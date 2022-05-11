@@ -49,5 +49,25 @@ namespace ProductsManagementSystemWithMVC.Controllers
             return File(fileNmae, "application/pdf");
 
         }
+
+        public ActionResult EmpFacebookPage(int EmpId)
+        {
+            var employees = new[]
+            {
+                new {Empid = 1, EmpName = "Scott", Salary = 8000},
+                new {Empid = 2, EmpName ="Smith", Salary =90000},
+                new {Empid = 3, EmpName ="Allen", Salary = 888787}
+            };
+
+            string fbUrl = null;
+            foreach(var emp in employees)
+            {
+                if(emp.Empid==EmpId) fbUrl =  "http://www.facebook.com/emp" + EmpId; 
+            }
+
+            if (fbUrl == null) return Content("Invalid EmpId", "text/plain");
+            else return Redirect(fbUrl);
+
+        }
     }
 }
