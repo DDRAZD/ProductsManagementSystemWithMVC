@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Contact</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/umd/popper.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-success navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/home/index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/home/products">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/home/Contact">Contact</a>
+            </li>
+        </ul>
+
+    </nav>
+
+    @{ 
+        //calculate the amounts to be called below
+        int[] Values = new int[6];
+
+
+        Values[0] = ViewBag.Numbers[0];
+        Values[1] = ViewBag.Numbers[1]*5;
+        Values[2] = ViewBag.Numbers[2]*10;
+        Values[3] = ViewBag.Numbers[3]*100;
+        Values[4] = ViewBag.Numbers[4]*500;
+        Values[5] = ViewBag.Numbers[5] * 1000;
+
+    }
+    <div class="container-fluid">
+        <h1>Currency Denominations</h1>
+        <table class="table">
+            <tr>
+                <td>Denomination</td>
+                <td>Count</td>
+                <td>Amount</td>
+            </tr>
+            @{
+                <tr>
+                    <td>1000</td>
+                    <td>@ViewBag.Numbers[5]</td>
+                    <td>@Values[5]</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>@ViewBag.Numbers[4]</td>
+                    <td>@Values[4]</td>
+                </tr>
+                <tr>
+                    <td>100</td>
+                    <td>@ViewBag.Numbers[3]</td>
+                    <td>@Values[3]</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>@ViewBag.Numbers[2]</td>
+                    <td>@Values[2]</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>@ViewBag.Numbers[1]</td>
+                    <td>@Values[1]</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>@ViewBag.Numbers[0]</td>
+                    <td>@Values[0]</td>
+                </tr>
+
+            }
+            
+        </table>
+    </div>
+</body>
+</html>
