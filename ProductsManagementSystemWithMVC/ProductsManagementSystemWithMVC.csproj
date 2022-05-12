@@ -209,6 +209,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Account\InvalidLogin.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Home\StudentDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />

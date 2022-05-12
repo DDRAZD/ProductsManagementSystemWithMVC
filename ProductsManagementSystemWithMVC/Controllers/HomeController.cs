@@ -69,5 +69,15 @@ namespace ProductsManagementSystemWithMVC.Controllers
             else return Redirect(fbUrl);
 
         }
+
+        public ActionResult StudentDetails()
+        {
+            ViewBag.StudentName = "Scott";
+            ViewBag.StudentId = 101;
+            ViewBag.Marks = 20;
+            ViewBag.NoOfSemesters = 6;
+            ViewBag.Subjects = new List<string>() { "Math", "Physics", "Chemistry" };
+            return View();
+        }
     }
 }
