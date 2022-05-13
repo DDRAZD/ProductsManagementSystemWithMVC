@@ -89,7 +89,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
         /// <returns>the view that will have razor block in it</returns>
         public ActionResult IndexAssignment(int Amount)
         {
-            List<int> numbersList = new List<int>();
+          /*  List<int> numbersList = new List<int>();
             int numberToAdd = 0;
             numberToAdd = Amount % 10;
 
@@ -126,8 +126,8 @@ namespace ProductsManagementSystemWithMVC.Controllers
             numbersList.Add(Amount);//adds the 1000s
 
 
-            ViewBag.Numbers = numbersList;
-
+            // ViewBag.Numbers = numbersList;*/
+            ViewBag.Number = Amount;
 
             return View();
         }

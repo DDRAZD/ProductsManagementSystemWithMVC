@@ -26,16 +26,22 @@
     </nav>
 
     @{ 
-        //calculate the amounts to be called below
-        int[] Values = new int[6];
 
 
-        Values[0] = ViewBag.Numbers[0];
-        Values[1] = ViewBag.Numbers[1]*5;
-        Values[2] = ViewBag.Numbers[2]*10;
-        Values[3] = ViewBag.Numbers[3]*100;
-        Values[4] = ViewBag.Numbers[4]*500;
-        Values[5] = ViewBag.Numbers[5] * 1000;
+        List<int> denominations = new List<int>() { 1000, 500,100,50,10,5,1 };
+        int[] numberOfBills = new int[7];
+        int[] values = new int[7]; ;
+
+        int currentNumber = ViewBag.Number;//60431
+
+        for (int i=0; i<7;i++)
+        {
+            numberOfBills[i] = Convert.ToInt32(currentNumber / denominations[i]); ;//60; second time it is 341 / 500 = 0
+          
+            currentNumber = currentNumber - numberOfBills[i] * denominations[i];//60341 - 60 * 1000 = 341; second time its 341 -0*500=341
+            values[i] = numberOfBills[i] * denominations[i];
+            
+        }
 
     }
     <div class="container-fluid">
@@ -47,36 +53,15 @@
                 <td>Amount</td>
             </tr>
             @{
-                <tr>
-                    <td>1000</td>
-                    <td>@ViewBag.Numbers[5]</td>
-                    <td>@Values[5]</td>
-                </tr>
-                <tr>
-                    <td>500</td>
-                    <td>@ViewBag.Numbers[4]</td>
-                    <td>@Values[4]</td>
-                </tr>
-                <tr>
-                    <td>100</td>
-                    <td>@ViewBag.Numbers[3]</td>
-                    <td>@Values[3]</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>@ViewBag.Numbers[2]</td>
-                    <td>@Values[2]</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>@ViewBag.Numbers[1]</td>
-                    <td>@Values[1]</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>@ViewBag.Numbers[0]</td>
-                    <td>@Values[0]</td>
-                </tr>
+                for(int j=0; j < 7; j++)
+                {
+                        <tr>
+                            <td>@denominations[j]</td>
+                            <td>@numberOfBills[j]</td>
+                            <td>@values[j]</td>
+                        </tr>
+                }
+                
 
             }
             
