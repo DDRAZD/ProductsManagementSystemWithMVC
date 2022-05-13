@@ -13,5 +13,10 @@ namespace ProductsManagementSystemWithMVC.Controllers
         {
             return View();
         }
+        public ActionResult Contact()
+        {
+            ViewBag.TollFree = "555555555";
+            return View();
+        }
     }
 }

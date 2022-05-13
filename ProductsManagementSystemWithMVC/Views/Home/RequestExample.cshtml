@@ -25,13 +25,36 @@
 
     </nav>
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-header"> <h1> Corporate Headquarters</h1></div>
-            <div class="card-body">
-                <p> Toll Free: 111111111</p>
-                <p>Email: someone@somewhere.com</p>
-            </div>
-        </div>
+        <table class="table">
+            <tr>
+                <td>URL</td>
+                <td>@ViewBag.Url</td>
+            </tr>
+            <tr>
+                <td>Physical Application Path</td>
+                <td>@ViewBag.PhysicalApplicationPath</td>
+            </tr>
+            <tr>
+                <td>Path</td>
+                <td>@ViewBag.Path</td>
+            </tr>
+            <tr>
+                <td>BrowserType</td>
+                <td>@ViewBag.BrowserType</td>
+            </tr>
+            <tr>
+                <td>QueryString</td>
+                <td>@ViewBag.QueryString</td>
+            </tr>
+            <tr>
+                <td>Header</td>
+                <td>@ViewBag.Header</td>
+            </tr>
+            <tr>
+                <td>Method</td>
+                <td>@ViewBag.Method</td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

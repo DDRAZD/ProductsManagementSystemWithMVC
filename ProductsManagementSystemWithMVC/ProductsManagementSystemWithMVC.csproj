@@ -206,7 +206,6 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\OurCompanyProducts.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Account\InvalidLogin.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Home\StudentDetails.cshtml" />
@@ -228,6 +227,9 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Views\Home\IndexAssignment.cshtml" />
+    <Content Include="Views\Home\RequestExample.cshtml" />
+    <Content Include="Views\Home\ResponseExample.cshtml" />
+    <Content Include="Views\Shared\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
