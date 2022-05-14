@@ -230,6 +230,7 @@
     <Content Include="Views\Home\RequestExample.cshtml" />
     <Content Include="Views\Home\ResponseExample.cshtml" />
     <Content Include="Views\Shared\Contact.cshtml" />
+    <Content Include="Views\Shared\_BaseLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
