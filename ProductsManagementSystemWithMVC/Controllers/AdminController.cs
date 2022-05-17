@@ -8,11 +8,12 @@ namespace ProductsManagementSystemWithMVC.Controllers
 {
     public class AdminController : Controller
     {
-      
+        [Route("Dashboard")]
         public ActionResult Dashboard()
         {
             return View();
         }
+        [Route("Contact")]
         public ActionResult Contact()
         {
             ViewBag.TollFree = "555555555";

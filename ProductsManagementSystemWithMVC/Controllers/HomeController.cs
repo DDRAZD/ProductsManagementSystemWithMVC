@@ -8,7 +8,8 @@ namespace ProductsManagementSystemWithMVC.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        [Route("Home/Index")]
+        [Route("")]
         public ActionResult Index()
         {
            
