@@ -56,5 +56,15 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
 
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(Product product)
+        {
+            return View();
+        }
     }
 }

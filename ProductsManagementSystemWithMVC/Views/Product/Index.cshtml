@@ -4,6 +4,7 @@
 }
 
 <h2>Products</h2>
+<a href="@Url.Action("Create","Product")">Create Product</a>
 
 <table class="table">
 
@@ -20,7 +21,7 @@
         {
         <tr>
             <td>@product.ProductId</td>
-            <td><a href="~/product/details/@product.ProductId">@product.ProductName</a></td>
+            <td><a href="@Url.Action("Details")/@product.ProductId">@product.ProductName</a></td>
             <td>@product.Rate</td>
         </tr>
         }

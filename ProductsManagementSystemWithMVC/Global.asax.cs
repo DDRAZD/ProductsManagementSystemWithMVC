@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ProductsManagementSystemWithMVC.Models;
 
 namespace ProductsManagementSystemWithMVC
 {
@@ -13,6 +14,7 @@ namespace ProductsManagementSystemWithMVC
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ModelBinders.Binders.Add(typeof(Student), new CustomBinder());
         }
     }
 }
