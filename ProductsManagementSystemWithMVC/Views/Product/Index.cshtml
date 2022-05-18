@@ -1,0 +1,31 @@
+﻿@model List<ProductsManagementSystemWithMVC.Models.Product>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Products</h2>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var product in Model)
+        {
+        <tr>
+            <td>@product.ProductId</td>
+            <td><a href="~/product/details/@product.ProductId">@product.ProductName</a></td>
+            <td>@product.Rate</td>
+        </tr>
+        }
+           
+
+        </tbody>
+</table>
+
