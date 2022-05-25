@@ -13,11 +13,11 @@ namespace ProductsManagementSystemWithMVC.Controllers
         
         public ActionResult Index()
         {
-            List<Product> products = new List<Product>()
+            List<ProductExample> products = new List<ProductExample>()
             {
-                new Product(){ ProductId = 1, ProductName = "AC", Rate=45000},
-                new Product(){ ProductId = 2, ProductName ="Mobile", Rate=38000},
-                new Product{ ProductId = 3, ProductName ="Bike", Rate=94000}
+                new ProductExample(){ ProductId = 1, ProductName = "AC", Rate=45000},
+                new ProductExample(){ ProductId = 2, ProductName ="Mobile", Rate=38000},
+                new ProductExample(){ ProductId = 3, ProductName ="Bike", Rate=94000}
             };
           ///  ViewBag.Products = products;
             return View(products);
@@ -30,15 +30,15 @@ namespace ProductsManagementSystemWithMVC.Controllers
         /// <returns></returns>
         public ActionResult Details(int id)
         {
-            List<Product> products = new List<Product>()
+            List<ProductExample> products = new List<ProductExample>()
             {
-                new Product(){ ProductId = 1, ProductName = "AC", Rate=45000},
-                new Product(){ ProductId = 2, ProductName ="Mobile", Rate=38000},
-                new Product{ ProductId = 3, ProductName ="Bike", Rate=94000}
+                new ProductExample(){ ProductId = 1, ProductName = "AC", Rate=45000},
+                new ProductExample(){ ProductId = 2, ProductName ="Mobile", Rate=38000},
+                new ProductExample{ ProductId = 3, ProductName ="Bike", Rate=94000}
             };
-            Product matchingProduct=null;
+            ProductExample matchingProduct =null;
 
-            foreach(Product product in products)
+            foreach(ProductExample product in products)
             {
                 if(product.ProductId == id)
                 {
@@ -62,7 +62,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create(ProductExample product)
         {
             return View();
         }
