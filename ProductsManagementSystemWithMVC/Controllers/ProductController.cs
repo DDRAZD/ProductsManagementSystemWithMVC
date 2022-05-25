@@ -13,13 +13,18 @@ namespace ProductsManagementSystemWithMVC.Controllers
         
         public ActionResult Index()
         {
-            List<ProductExample> products = new List<ProductExample>()
+
+            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+            List<Product> products = db.Products.ToList();
+
+
+            /* List<ProductExample> products = new List<ProductExample>()
             {
                 new ProductExample(){ ProductId = 1, ProductName = "AC", Rate=45000},
                 new ProductExample(){ ProductId = 2, ProductName ="Mobile", Rate=38000},
                 new ProductExample(){ ProductId = 3, ProductName ="Bike", Rate=94000}
-            };
-          ///  ViewBag.Products = products;
+            };*/
+            ///  ViewBag.Products = products;
             return View(products);
         }
 

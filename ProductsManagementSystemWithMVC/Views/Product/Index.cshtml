@@ -1,4 +1,4 @@
-﻿@model List<ProductsManagementSystemWithMVC.Models.ProductExample>
+﻿@model List<ProductsManagementSystemWithMVC.Models.Product>
 @{
     ViewBag.Title = "Index";
 }
@@ -12,17 +12,28 @@
         <tr>
             <th>Product ID</th>
             <th>Product Name</th>
-            <th>Rate</th>
-        </tr>
+            <th>Price</th>
+            <th>Date of Purchase</th>
+            <th>Availability</th>
+            <th>Category</th>
+            <th>Brand</th>
+            <th>Active</th>
+         </tr>
     </thead>
     <tbody>
 
         @foreach (var product in Model)
         {
         <tr>
-            <td>@product.ProductId</td>
-            <td><a href="@Url.Action("Details")/@product.ProductId">@product.ProductName</a></td>
-            <td>@product.Rate</td>
+            <td>@product.ProductID</td>
+            <td>@product.ProductName</td>
+            <td>@product.Price.Value.ToString("C")</td>
+            <td>@product.DateOfPurchase.Value.ToString("d/M/yy")</td>
+            <td>@product.AvailabilityStatus</td>
+            <td>@product.Category.CategoryName</td>
+            <td>@product.Brand.BrandName</td>
+            <td>@product.Active</td>
+
         </tr>
         }
            
