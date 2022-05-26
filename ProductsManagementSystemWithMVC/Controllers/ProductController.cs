@@ -10,31 +10,28 @@ namespace ProductsManagementSystemWithMVC.Controllers
 {
     public class ProductController : Controller
     {
-        
-        public ActionResult Index()
+        [Route("Product/Index")]
+        public ActionResult Index(string search="")
         {
 
             EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
-            List<Product> products = db.Products.ToList();
+            List<Product> products = db.Products.Where(item => item.ProductName.Contains(search)).ToList();
 
+            ViewBag.Search = search;
 
-            /* List<ProductExample> products = new List<ProductExample>()
-            {
-                new ProductExample(){ ProductId = 1, ProductName = "AC", Rate=45000},
-                new ProductExample(){ ProductId = 2, ProductName ="Mobile", Rate=38000},
-                new ProductExample(){ ProductId = 3, ProductName ="Bike", Rate=94000}
-            };*/
-            ///  ViewBag.Products = products;
+           
             return View(products);
         }
 
-        /// <summary>
-        /// will pull product details based on ID; the ID is configured in the RouteConfig.cs as optional 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult Details(int id)
+        
+        public ActionResult Details(long id)
         {
+
+            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+            Product product = db.Products.Where(item => item.ProductID==id).FirstOrDefault();
+
+
+            /*
             List<ProductExample> products = new List<ProductExample>()
             {
                 new ProductExample(){ ProductId = 1, ProductName = "AC", Rate=45000},
@@ -56,8 +53,8 @@ namespace ProductsManagementSystemWithMVC.Controllers
             {
                 return Content("product cannot be found");
             }
-            //ViewBag.MatchingProduct = matchingProduct;
-            return View(matchingProduct);
+            //ViewBag.MatchingProduct = matchingProduct;*/
+            return View(product);
 
 
         }

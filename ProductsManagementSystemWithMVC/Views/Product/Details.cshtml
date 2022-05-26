@@ -1,5 +1,5 @@
 ﻿
-@model ProductsManagementSystemWithMVC.Models.ProductExample
+@model ProductsManagementSystemWithMVC.Models.Product
 
 @{
     ViewBag.Title = "Details";
@@ -11,14 +11,16 @@
 
     <tr>
         <th>Product ID</th>
-        <td>@Model.ProductId</td>
+        <td>@Model.ProductID</td>
     </tr>
     <tr>
         <th>Product Name</th>
         <td>@Model.ProductName</td>
     </tr>
     <tr>
-        <th>Rate</th>
-        <td>@Model.Rate</td>
+        <th>Price</th>
+        <td>@Model.Price</td>
     </tr>
 </table>
+
+<a href="@Url.Action("index","Product")">Back to Products</a>

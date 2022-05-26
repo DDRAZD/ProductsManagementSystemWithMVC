@@ -18,7 +18,8 @@
             <th>Category</th>
             <th>Brand</th>
             <th>Active</th>
-         </tr>
+            <th>Details link</th>
+        </tr>
     </thead>
     <tbody>
 
@@ -33,11 +34,12 @@
             <td>@product.Category.CategoryName</td>
             <td>@product.Brand.BrandName</td>
             <td>@product.Active</td>
-
+            <td><a href="@Url.Action("Details","Product", new {id=@product.ProductID})">Product Details</a></td>
         </tr>
+            
         }
-           
 
-        </tbody>
+
+    </tbody>
 </table>
 

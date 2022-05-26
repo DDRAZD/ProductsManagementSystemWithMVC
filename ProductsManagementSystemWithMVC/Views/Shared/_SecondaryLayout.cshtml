@@ -28,8 +28,16 @@
                 <a class="nav-link" href="/Brand/Index">Brands</a>
             </li>
         </ul>
-
+        <!--adding a search box-->
+        <form class="form-inline" action="~/product/index">
+            <label for="search" class="mr-1">Search:</label>
+            <input type="search" class="form-control mr-1" id="search" name="search" placeholder="Search" value="@ViewBag.search" >
+            <button type="submit" class="btn btn-primary">Go</button>
+        </form>
     </nav>
+   
+
+
     <!--adding a side bar-->
 
     <div class="row">
