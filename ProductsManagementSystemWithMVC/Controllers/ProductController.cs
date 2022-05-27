@@ -79,5 +79,16 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
             return RedirectToAction("Index","Product");
         }
+
+        public ActionResult Delete(long id)
+        {
+            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+            Product productTodelte = db.Products.Where(p => p.ProductID == id).FirstOrDefault();
+
+            db.Products.Remove(productTodelte);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Product");
+        }
     }
 }

@@ -18,8 +18,9 @@
             <th>Category</th>
             <th>Brand</th>
             <th>Active</th>
-            <th>Details link</th>
+            <th>Details</th>
             <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -35,8 +36,9 @@
             <td>@product.Category.CategoryName</td>
             <td>@product.Brand.BrandName</td>
             <td>@product.Active</td>
-            <td><a href="@Url.Action("Details","Product", new {id=@product.ProductID})">Product Details</a></td>
-            <td><a href="@Url.Action("Edit","Product", new {id=@product.ProductID})">Edit Product</a></td>
+            <td><a href="@Url.Action("Details","Product", new {id=@product.ProductID})">Details</a></td>
+            <td><a href="@Url.Action("Edit","Product", new {id=@product.ProductID})">Edit</a></td>
+            <td><a href="@Url.Action("Delete","Product", new {id=@product.ProductID})">Delete</a></td>
         </tr>
             
         }
