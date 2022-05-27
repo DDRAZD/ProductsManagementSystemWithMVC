@@ -5,6 +5,27 @@
     ViewBag.Title = "Details";
 }
 
+
+@{ 
+    //checking for nulls
+
+    string categoryName = "";
+    string brandName = "";
+    string dateOfPurchase = "";
+
+    if(Model.Category != null)
+    {
+        categoryName = Model.Category.CategoryName;
+    }
+    if(Model.Brand !=null)
+    {
+        brandName = Model.Brand.BrandName;
+    }
+    if(Model.DateOfPurchase.HasValue)
+    {
+        dateOfPurchase = Model.DateOfPurchase.Value.ToString("yyyy-MM-dd");
+    }
+}
 <h2>Product Details</h2>
 
 <table class="table">
@@ -20,6 +41,22 @@
     <tr>
         <th>Price</th>
         <td>@Model.Price</td>
+    </tr>
+    <tr>
+        <th>Avilablity</th>
+        <td>@Model.AvailabilityStatus</td>
+    </tr>
+    <tr>
+        <th>Category</th>
+        <td>@categoryName</td>
+    </tr>
+    <tr>
+        <th>Brand</th>
+        <td>@brandName</td>
+    </tr>
+    <tr>
+        <th>Date of Purchase</th>
+        <td>@dateOfPurchase</td>
     </tr>
 </table>
 

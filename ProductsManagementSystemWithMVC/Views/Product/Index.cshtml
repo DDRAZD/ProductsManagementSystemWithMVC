@@ -33,8 +33,17 @@
             <td>@product.Price.Value.ToString("C")</td>
             <td>@product.DateOfPurchase.Value.ToString("d/M/yy")</td>
             <td>@product.AvailabilityStatus</td>
-            <td>@product.Category.CategoryName</td>
-            <td>@product.Brand.BrandName</td>
+            <td>@if(product.Category!= null)
+            {
+                <span>@product.Category.CategoryName;</span>
+            }
+            </td>
+            <td>
+                @if (product.Brand != null)
+                {
+                  <span>@product.Brand.BrandName;</span>
+                }
+                    </td>
             <td>@product.Active</td>
             <td><a href="@Url.Action("Details","Product", new {id=@product.ProductID})">Details</a></td>
             <td><a href="@Url.Action("Edit","Product", new {id=@product.ProductID})">Edit</a></td>
