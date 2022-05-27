@@ -19,6 +19,7 @@
             <th>Brand</th>
             <th>Active</th>
             <th>Details link</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -35,6 +36,7 @@
             <td>@product.Brand.BrandName</td>
             <td>@product.Active</td>
             <td><a href="@Url.Action("Details","Product", new {id=@product.ProductID})">Product Details</a></td>
+            <td><a href="@Url.Action("Edit","Product", new {id=@product.ProductID})">Edit Product</a></td>
         </tr>
             
         }

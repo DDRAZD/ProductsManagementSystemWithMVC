@@ -31,29 +31,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
             Product product = db.Products.Where(item => item.ProductID==id).FirstOrDefault();
 
 
-            /*
-            List<ProductExample> products = new List<ProductExample>()
-            {
-                new ProductExample(){ ProductId = 1, ProductName = "AC", Rate=45000},
-                new ProductExample(){ ProductId = 2, ProductName ="Mobile", Rate=38000},
-                new ProductExample{ ProductId = 3, ProductName ="Bike", Rate=94000}
-            };
-            ProductExample matchingProduct =null;
-
-            foreach(ProductExample product in products)
-            {
-                if(product.ProductId == id)
-                {
-                    matchingProduct = product;
-
-                }               
-            }
-
-            if(matchingProduct == null)
-            {
-                return Content("product cannot be found");
-            }
-            //ViewBag.MatchingProduct = matchingProduct;*/
+            
             return View(product);
 
 
@@ -64,9 +42,42 @@ namespace ProductsManagementSystemWithMVC.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(ProductExample product)
+        public ActionResult Create(Product product)
         {
-            return View();
+            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+
+            db.Products.Add(product);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(long id)
+        {
+            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+
+            Product productToEdit = db.Products.Where(product => product.ProductID == id).FirstOrDefault();
+
+            return View(productToEdit);
+        }
+        [HttpPost]
+        public ActionResult Edit(Product product)
+        {
+            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+            Product productToEdit = db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault();
+
+            //update the product but dont touch the id as that is a primary key
+            productToEdit.ProductName = product.ProductName;
+            productToEdit.Price = product.Price;
+            productToEdit.DateOfPurchase = product.DateOfPurchase;
+            productToEdit.CategoryID = product.CategoryID;
+            productToEdit.BrandID = product.BrandID;
+            productToEdit.Active = product.Active;
+            productToEdit.AvailabilityStatus = product.AvailabilityStatus;
+
+            db.SaveChanges();
+
+
+            return RedirectToAction("Index","Product");
         }
     }
 }

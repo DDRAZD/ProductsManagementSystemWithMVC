@@ -6,19 +6,53 @@
 <h2>Create</h2>
 
 <form action="@Url.Action("Create","Product")" method="post">
-    <div class="form-group">
-        <label>Product Id</label>
-        <input type="text" class="form-control" id="txtProductId" placeholder="Product ID" name="ProductId">
+    <!--first row-->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Product Name</label>
+            <input type="text" class="form-control" id="ProductName" placeholder="Product Name" name="ProductName">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Price</label>
+            <input type="number" class="form-control" id="Price" placeholder="Price" name="Price">
+        </div>
     </div>
-    <div class="form-group">
-        <label>Product Name</label>
-        <input type="text" class="form-control" id="txtProductId" placeholder="Product Name" name="ProductName">
+
+    <!--second row-->
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <label>DateOfPurchase</label>
+            <input type="date" class="form-control" id="DateOfPurchase" placeholder="Date Of Purchase" name="DateOfPurchase">
+        </div>
+        <div class="form-group col-md-6">
+            <label>AvailabilityStatus</label>
+            <input type="text" class="form-control" id="AvailabilityStatus" placeholder="AvailabilityStatus" name="AvailabilityStatus">
+        </div>
     </div>
-    <div class="form-group">
-        <label>Rate</label>
-        <input type="text" class="form-control" id="txtProductId" placeholder="Rate" name="Rate">
+    <!--third row-->
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <label>CategoryID</label>
+            <input type="text" class="form-control" id="CategoryID" placeholder="CategoryID" name="CategoryID">
+        </div>
+        <div class="form-group col-md-6">
+            <label>BrandID</label>
+            <input type="text" class="form-control" id="BrandID" placeholder="BrandID" name="BrandID">
+        </div>
     </div>
-    <button  class="btn btn-success">Submit</button>
+    
+    <!--check box-->
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="Active" value="true"/>
+            <label class="form-check-label" for="Active">Active</label>
+        </div>
+        
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a class="btn btn-danger" href="@Url.Action("Index","Product")">Cancel</a>
 
 </form>
 
