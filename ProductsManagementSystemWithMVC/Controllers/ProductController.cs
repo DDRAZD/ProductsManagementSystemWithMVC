@@ -11,15 +11,75 @@ namespace ProductsManagementSystemWithMVC.Controllers
     public class ProductController : Controller
     {
         [Route("Product/Index")]
-        public ActionResult Index(string search="")
+        public ActionResult Index(string search="", string SortColumn="ProductName", string IconClass="fa-sort-asc")
         {
 
             EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
             List<Product> products = db.Products.Where(item => item.ProductName.Contains(search)).ToList();
-
             ViewBag.Search = search;
+            ViewBag.SortColumn = SortColumn;
+            ViewBag.IconClass = IconClass;
 
-           
+            //sorting is done at the controller level, before sent to the view
+
+            if(SortColumn == "ProductID")
+            {
+               if(IconClass == "fa-sort-asc")
+                   products = products.OrderBy(temp => temp.ProductID).ToList();
+               else
+                    products=products.OrderByDescending(temp => temp.ProductID).ToList();
+            }
+            else if (SortColumn =="ProductName")
+            {
+                if (IconClass == "fa-sort-asc")
+                    products = products.OrderBy(temp => temp.ProductName).ToList();
+                else
+                    products = products.OrderByDescending(temp => temp.ProductName).ToList();
+            }
+            else if (SortColumn=="Price")
+            {
+                if (IconClass == "fa-sort-asc")
+                    products = products.OrderBy(temp => temp.Price).ToList();
+                else
+                    products = products.OrderByDescending(temp => temp.Price).ToList();
+
+            }
+            else if (SortColumn=="AvailabilityStatus")
+            {
+                if (IconClass == "fa-sort-asc")
+                    products = products.OrderBy(temp => temp.AvailabilityStatus).ToList();
+                else
+                    products = products.OrderByDescending(temp => temp.AvailabilityStatus).ToList();
+            }
+            else if (SortColumn == "BrandID")
+            {
+                if (IconClass == "fa-sort-asc")
+                    products = products.OrderBy(temp => temp.BrandID).ToList();
+                else
+                    products = products.OrderByDescending(temp => temp.BrandID).ToList();
+            }
+            else if (SortColumn == "CategoryID")
+            {
+                if (IconClass == "fa-sort-asc")
+                    products = products.OrderBy(temp => temp.CategoryID).ToList();
+                else
+                    products = products.OrderByDescending(temp => temp.CategoryID).ToList();
+            }
+            else if (SortColumn == "DateOfPurchase")
+            {
+                if (IconClass == "fa-sort-asc")
+                    products = products.OrderBy(temp => temp.DateOfPurchase).ToList();
+                else
+                    products = products.OrderByDescending(temp => temp.DateOfPurchase).ToList();
+            }
+            else if (SortColumn == "Active")
+            {
+                if (IconClass == "fa-sort-asc")
+                    products = products.OrderBy(temp => temp.Active).ToList();
+                else
+                    products = products.OrderByDescending(temp => temp.Active).ToList();
+            }
+
             return View(products);
         }
 
