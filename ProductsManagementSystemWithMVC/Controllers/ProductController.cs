@@ -11,7 +11,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
     public class ProductController : Controller
     {
         [Route("Product/Index")]
-        public ActionResult Index(string search="", string SortColumn="ProductName", string IconClass="fa-sort-asc")
+        public ActionResult Index(string search="", string SortColumn="ProductName", string IconClass="fa-sort-asc", int PageNo=1)
         {
 
             EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
@@ -79,6 +79,15 @@ namespace ProductsManagementSystemWithMVC.Controllers
                 else
                     products = products.OrderByDescending(temp => temp.Active).ToList();
             }
+
+            //paging - limiting the number of records per page displayed to the user
+            int NoOfRecordsPerPage = 5;
+            int NoOfPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(products.Count) / Convert.ToDouble(NoOfRecordsPerPage))); //rounding up
+            int NoOfRecordsToSkip = (PageNo - 1) * NoOfRecordsPerPage;
+            ViewBag.PageNo = PageNo;
+            ViewBag.NoOfPages = NoOfPages;
+            products = products.Skip(NoOfRecordsToSkip).Take(NoOfRecordsPerPage).ToList();
+
 
             return View(products);
         }
