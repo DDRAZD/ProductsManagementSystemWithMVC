@@ -46,12 +46,51 @@
     <div class="form-row">
 
         <div class="form-group col-md-6">
-            <label>CategoryID</label>
-            <input type="text" class="form-control" id="CategoryID" placeholder="CategoryID" name="CategoryID" value="@Model.CategoryID">
+            
+            <label for="CategoryID">Category</label>
+            <select class="form-control" id="CategoryID" placeholder="CategoryID" name="CategoryID">
+                <option value="">Please Select</option>
+                @{
+                    foreach (var cat in ViewBag.Categories)
+                    {
+                        if (cat.CategoryID == Model.CategoryID)
+                        {
+                            <option value="@cat.CategoryID" selected="selected">@cat.CategoryName.ToString()</option>
+                        }
+                        else
+                        {
+                            <option value="@cat.CategoryID">@cat.CategoryName.ToString()</option>
+                        }
+
+                    }
+                }
+
+
+            </select>
         </div>
+
+
         <div class="form-group col-md-6">
-            <label>BrandID</label>
-            <input type="text" class="form-control" id="BrandID" placeholder="BrandID" name="BrandID" value="@Model.BrandID">
+            <label for="BrandID">Brand</label>
+            <select class="form-control" id="BrandID" placeholder="BrandID" name="BrandID">
+                <option value="">Please Select</option>
+                @{
+                    foreach (var brand in ViewBag.Brands)
+                    {
+                        if (brand.BrandID == Model.BrandID)
+                        {
+                            <option value="@brand.BrandID" selected="selected">@brand.BrandName.ToString()</option>
+                        }
+                        else
+                        {
+                            <option value="@brand.BrandID">@brand.BrandName.ToString()</option>
+                        }
+
+                    }
+                }
+
+
+            </select>            
         </div>
     </div>
 

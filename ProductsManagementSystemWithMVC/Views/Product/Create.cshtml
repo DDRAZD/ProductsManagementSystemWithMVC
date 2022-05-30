@@ -26,30 +26,56 @@
             <input type="date" class="form-control" id="DateOfPurchase" placeholder="Date Of Purchase" name="DateOfPurchase">
         </div>
         <div class="form-group col-md-6">
-            <label>AvailabilityStatus</label>
-            <input type="text" class="form-control" id="AvailabilityStatus" placeholder="AvailabilityStatus" name="AvailabilityStatus">
+            <label for="AvailabilityStatus">AvailabilityStatus</label>
+            <select class="form-control" id="AvailabilityStatus" name="AvailabilityStatus">
+                <option value="">Please Select</option>
+                <option value="InStock">In Stock</option>
+                <option value="OutOfStock">Out Of Stock</option>
+            </select>
         </div>
     </div>
     <!--third row-->
     <div class="form-row">
 
         <div class="form-group col-md-6">
-            <label>CategoryID</label>
-            <input type="text" class="form-control" id="CategoryID" placeholder="CategoryID" name="CategoryID">
+            <label for="CategoryID">CategoryID</label>
+            <select class="form-control" id="CategoryID" placeholder="CategoryID" name="CategoryID">
+                <option value="">Please Select</option>
+                @{ 
+                    foreach(var cat in ViewBag.Categories)
+                     {
+                        <option value="@cat.CategoryID">@cat.CategoryName.ToString()</option>
+                     }
+                }
+
+               
+            </select>
+
         </div>
         <div class="form-group col-md-6">
-            <label>BrandID</label>
-            <input type="text" class="form-control" id="BrandID" placeholder="BrandID" name="BrandID">
+            <label for="BrandID">BrandID</label>
+            <select class="form-control" id="BrandID" placeholder="BrandID" name="BrandID">
+                <option value="">Please Select</option>
+                @{
+                    foreach (var brand in ViewBag.Brands)
+                    {
+                        <option value="@brand.BrandID">@brand.BrandName.ToString()</option>
+                    }
+                }
+
+
+            </select>
         </div>
     </div>
-    
+
     <!--check box-->
-    <div class="form-group">
+     <div class="form-group">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="Active" value="true"/>
-            <label class="form-check-label" for="Active">Active</label>
+            <input class="form-check-input" type="checkbox" id="Active" name="Active" value="true">
+            <label class="form-check-label" for="Active">
+                Active
+            </label>
         </div>
-        
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
     <a class="btn btn-danger" href="@Url.Action("Index","Product")">Cancel</a>

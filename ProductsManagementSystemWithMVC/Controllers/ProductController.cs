@@ -39,6 +39,10 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
         public ActionResult Create()
         {
+            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+            ViewBag.Categories =  db.Categories.ToList();
+            ViewBag.Brands = db.Brands.ToList();
+
             return View();
         }
         [HttpPost]
@@ -56,6 +60,10 @@ namespace ProductsManagementSystemWithMVC.Controllers
             EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
 
             Product productToEdit = db.Products.Where(product => product.ProductID == id).FirstOrDefault();
+
+            
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Brands = db.Brands.ToList();
 
             return View(productToEdit);
         }
