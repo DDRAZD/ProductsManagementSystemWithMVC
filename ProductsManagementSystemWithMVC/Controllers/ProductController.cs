@@ -120,6 +120,17 @@ namespace ProductsManagementSystemWithMVC.Controllers
             EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
 
             db.Products.Add(product);
+            //Request.Files is an array that catches all the files submitted to the browser (built in)
+       
+
+            if (Request.Files.Count >= 1)
+            {
+                var file = Request.Files[0]; //assuming only one file was submitted; this also requires the encrypt type to be set in the view
+                var imgBytes = new Byte[file.ContentLength]; //creating a byte array to store the file (better as more encrypted)
+                file.InputStream.Read(imgBytes, 0, file.ContentLength); // writing all the bytes from the file into imgBytes
+                var base64String = Convert.ToBase64String(imgBytes, 0, imgBytes.Length);//convert the bytes to string before storing in DB
+                product.Photo = base64String;
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }

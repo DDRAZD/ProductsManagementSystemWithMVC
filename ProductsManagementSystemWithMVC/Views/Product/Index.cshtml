@@ -10,6 +10,7 @@
 
     <thead>
         <tr class="table-secondary">
+            <th style="width:15%">Phote</th>
             <th style="width:10%">
                 @if (ViewBag.IconClass == "fa-sort-desc")
                 {
@@ -191,6 +192,7 @@
         @foreach (var product in Model)
         {
         <tr>
+            <td><img src="data:image;base64, @product.Photo" width="100px" /></td>
             <td>@product.ProductID</td>
             <td>@product.ProductName</td>
             <td>@product.Price.Value.ToString("C")</td>

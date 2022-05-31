@@ -22,6 +22,7 @@ namespace ProductsManagementSystemWithMVC.Models
         public Nullable<long> CategoryID { get; set; }
         public Nullable<long> BrandID { get; set; }
         public Nullable<bool> Active { get; set; }
+        public string Photo { get; set; }
     
         public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }

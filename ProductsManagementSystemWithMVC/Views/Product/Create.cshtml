@@ -5,7 +5,7 @@
 
 <h2>Create</h2>
 
-<form action="@Url.Action("Create","Product")" method="post">
+<form action="@Url.Action("Create","Product")" method="post" enctype="multipart/form-data">
     <!--first row-->
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -41,14 +41,14 @@
             <label for="CategoryID">CategoryID</label>
             <select class="form-control" id="CategoryID" placeholder="CategoryID" name="CategoryID">
                 <option value="">Please Select</option>
-                @{ 
-                    foreach(var cat in ViewBag.Categories)
-                     {
+                @{
+                    foreach (var cat in ViewBag.Categories)
+                    {
                         <option value="@cat.CategoryID">@cat.CategoryName.ToString()</option>
-                     }
+                    }
                 }
 
-               
+
             </select>
 
         </div>
@@ -63,22 +63,25 @@
                     }
                 }
 
-
             </select>
         </div>
-    </div>
-
-    <!--check box-->
-     <div class="form-group">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="Active" name="Active" value="true">
-            <label class="form-check-label" for="Active">
-                Active
-            </label>
+        <div class="form-group col-md-6">
+            <label for="Image">Image</label>
+            <input type="file" class="form-control-file" id="Image" name="Phote"/>
         </div>
-    </div>
-    <button type="submit" class="btn btn-success">Submit</button>
-    <a class="btn btn-danger" href="@Url.Action("Index","Product")">Cancel</a>
+        </div>
+
+        <!--check box-->
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Active" name="Active" value="true">
+                <label class="form-check-label" for="Active">
+                    Active
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+        <a class="btn btn-danger" href="@Url.Action("Index","Product")">Cancel</a>
 
 </form>
 
