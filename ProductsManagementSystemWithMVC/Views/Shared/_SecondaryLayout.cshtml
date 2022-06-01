@@ -31,8 +31,10 @@
         </ul>
         <!--adding a search box-->
         <form class="form-inline" action="~/product/index">
-            <label for="search" class="mr-1">Search:</label>
-            <input type="search" class="form-control mr-1" id="search" name="search" placeholder="Search" value="@ViewBag.search" >
+            @Html.Label("Search", new {@class="mr-1"})
+            @Html.TextBox("Search", ViewBag.search as string, new {@class="form-control mr-1", placeholder= "Search"})
+            
+            
             <button type="submit" class="btn btn-primary">Go</button>
         </form>
     </nav>

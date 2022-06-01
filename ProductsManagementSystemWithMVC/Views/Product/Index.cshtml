@@ -193,28 +193,28 @@
         {
         <tr>
             <td><img src="data:image;base64, @product.Photo" width="100px" /></td>
-            <td>@product.ProductID</td>
-            <td>@product.ProductName</td>
-            <td>@product.Price.Value.ToString("C")</td>
-            <td>@product.DateOfPurchase.Value.ToString("d/M/yy")</td>
-            <td>@product.AvailabilityStatus</td>
+            <td>@Html.DisplayFor(temp => product.ProductID)</td>
+            <td>@Html.DisplayFor(temp => product.ProductName)</td>
+            <td>@Html.DisplayFor(temp => product.Price)</td>
+            <td>@Html.DisplayFor(temp => product.DateOfPurchase)</td>
+            <td>@Html.DisplayFor(temp => product.AvailabilityStatus)</td>
             <td>@if(product.Category!= null)
             {
-                <span>@product.Category.CategoryName</span>
+                <span>@Html.DisplayFor(temp => product.Category.CategoryName)</span>
             }
             </td>
             <td>
                 @if (product.Brand != null)
                 {
-                  <span>@product.Brand.BrandName</span>
+                  <span>@Html.DisplayFor(temp => product.Brand.BrandName)</span>
                 }
                     </td>
             <td>@product.Active</td>
             <td>
-               <a href="@Url.Action("Details","Product", new {id=@product.ProductID})">Details</a> |
+               @Html.ActionLink("Details","Details",new {id = product.ProductID, controller = "Product"})
                <a href="@Url.Action("Edit","Product", new {id=@product.ProductID})">Edit</a> |
                <a href="@Url.Action("Delete","Product", new {id=@product.ProductID})">Delete</a> |
-            </td>
+             </td>
         </tr>
             
         }
