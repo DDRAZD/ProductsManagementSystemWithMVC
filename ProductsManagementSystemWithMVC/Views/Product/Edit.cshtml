@@ -7,103 +7,91 @@
 <h2>Edit</h2>
 
 
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { id = Model.ProductID, enctype = "multipart/form-data" }))
+{
 
-
-
-<form action="@Url.Action("Edit","Product", new { id = Model.ProductID })" method="post">
-    <!--first row-->
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="ProductName">Product Name</label>
-            <input type="hidden" name="ProductID" value="@Model.ProductID" />
-            <input type="text" class="form-control" id="ProductName" placeholder="Product Name" name="ProductName" value="@Model.ProductName">
+    
+        <!--first row-->
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(item => item.ProductName)
+                @Html.TextBoxFor(temp => temp.ProductID, new { value = Model.ProductID, @type = "hidden" })
+                @Html.TextBoxFor(temp => temp.ProductName, new { placeholder = Model.ProductName, @class = "form-control" })
+                               
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(item=>item.Price)
+                @Html.TextBoxFor(item=>item.Price, new {placeholder=Model.Price, value=Model.Price})
+                
+            </div>
         </div>
-        <div class="form-group col-md-6">
-            <label>Price</label>
-            <input type="number" class="form-control" id="Price" placeholder="Price" name="Price" value="@Model.Price">
+       
+            string dateOfPurchase = "";
+            if (Model.DateOfPurchase.HasValue)
+            {
+                dateOfPurchase = Model.DateOfPurchase.Value.ToString("yyyy-MM-dd");
+            }
+        
+        <!--second row-->
+        <div class="form-row">
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(item=>item.DateOfPurchase)
+               <input type="date" class="form-control" id="DateOfPurchase" placeholder="Date Of Purchase" name="DateOfPurchase" value="@dateOfPurchase">
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(item => item.AvailabilityStatus, new { @class = "form-check-label" })
+               
+                <div class="form-check">
+                    @Html.RadioButtonFor(temp => temp.AvailabilityStatus, "OutOfStock",  
+                   new { id = "OuOfStock", @class = "form-check-input" })
+                
+                    <labal class="form-check-label" for="OutOfStock">Out of Stock</labal>
+
+                </div>
+                <div class="form-check">
+                    @Html.RadioButtonFor(temp => temp.AvailabilityStatus, "InStock",
+                   new { id = "InStock", @class = "form-check-input" })
+                    <labal class="form-check-label" for="InStock">in Stock</labal>
+
+                </div>
+            </div>
+       </div>
+        <!--third row-->
+        <div class="form-row">
+
+            <div class="form-group col-md-6">
+
+                @Html.LabelFor(item => item.CategoryID)
+
+                @Html.DropDownListFor(item => item.CategoryID, new SelectList(ViewBag.Categories, "CategoryID", "CategoryName"), "Please Select", new { @class = "form-control" })
+
+            </div>
+
+
+            <div class="form-group col-md-6">
+               @Html.LabelFor(item=>item.BrandID)
+                @Html.DropDownListFor(item=>item.BrandID, new SelectList(ViewBag.Brands, "BrandID", "BrandName"),"Please Select",new {@class="form-control"})
+               
+
+               
+            </div>
         </div>
-    </div>
-    @{ 
-        string dateOfPurchase = "";
-        if(Model.DateOfPurchase.HasValue)
-        {
-            dateOfPurchase = Model.DateOfPurchase.Value.ToString("yyyy-MM-dd");
-        }
-    }
-    <!--second row-->
-    <div class="form-row">
 
-        <div class="form-group col-md-6">
-            <label>DateOfPurchase</label>
-            <input type="date" class="form-control" id="DateOfPurchase" placeholder="Date Of Purchase" name="DateOfPurchase" value="@dateOfPurchase">
+        <!--check box-->
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Active" name="Active" checked="@Model.Active" value="true">
+                <label class="form-check-label" for="Active">
+                    Active
+                </label>
+            </div>
         </div>
-        <div class="form-group col-md-6">
-            <label>AvailabilityStatus</label>
-            <input type="text" class="form-control" id="AvailabilityStatus" placeholder="AvailabilityStatus" name="AvailabilityStatus" value="@Model.AvailabilityStatus">
-        </div>
-    </div>
-    <!--third row-->
-    <div class="form-row">
-
-        <div class="form-group col-md-6">
-            
-            <label for="CategoryID">Category</label>
-            <select class="form-control" id="CategoryID" placeholder="CategoryID" name="CategoryID">
-                <option value="">Please Select</option>
-                @{
-                    foreach (var cat in ViewBag.Categories)
-                    {
-                        if (cat.CategoryID == Model.CategoryID)
-                        {
-                            <option value="@cat.CategoryID" selected="selected">@cat.CategoryName.ToString()</option>
-                        }
-                        else
-                        {
-                            <option value="@cat.CategoryID">@cat.CategoryName.ToString()</option>
-                        }
-
-                    }
-                }
-
-
-            </select>
-        </div>
-
-
-        <div class="form-group col-md-6">
-            <label for="BrandID">Brand</label>
-            <select class="form-control" id="BrandID" placeholder="BrandID" name="BrandID">
-                <option value="">Please Select</option>
-                @{
-                    foreach (var brand in ViewBag.Brands)
-                    {
-                        if (brand.BrandID == Model.BrandID)
-                        {
-                            <option value="@brand.BrandID" selected="selected">@brand.BrandName.ToString()</option>
-                        }
-                        else
-                        {
-                            <option value="@brand.BrandID">@brand.BrandName.ToString()</option>
-                        }
-
-                    }
-                }
-
-
-            </select>            
-        </div>
-    </div>
-
-    <!--check box-->
-    <div class="form-group">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="Active" name="Active" checked="@Model.Active" value="true">
-            <label class="form-check-label" for="Active">
-                Active
-            </label>
-        </div>
-    </div>
         <button type="submit" class="btn btn-success">Save</button>
         <a class="btn btn-danger" href="@Url.Action("Index","Product")">Cancel</a>
 
-</form>
+   
+}
+
+
+
