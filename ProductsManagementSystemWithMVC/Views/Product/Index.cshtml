@@ -211,10 +211,11 @@
                     </td>
             <td>@product.Active</td>
             <td>
-               @Html.ActionLink("Details","Details",new {id = product.ProductID, controller = "Product"})
-               <a href="@Url.Action("Edit","Product", new {id=@product.ProductID})">Edit</a> |
-               <a href="@Url.Action("Delete","Product", new {id=@product.ProductID})">Delete</a> |
-             </td>
+                @Html.ActionLink("Details", "Details", new { id = product.ProductID, controller = "Product" })
+                @Html.ActionLink("Edit", "Edit", new { id = product.ProductID, controller = "Product" })
+                @Html.ActionLink("Delete", "Delete", new { id = product.ProductID, controller = "Product" })
+              
+            </td>
         </tr>
             
         }
