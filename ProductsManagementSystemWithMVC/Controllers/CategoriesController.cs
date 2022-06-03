@@ -13,7 +13,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
         // GET: Categories/Index
         public ActionResult Index()
         {
-            EFDBFirstDatabaseEntities db =new EFDBFirstDatabaseEntities();
+            CompanyDbContext db =new CompanyDbContext();
             List<Category> categories = db.Categories.ToList();
             return View(categories);
         }

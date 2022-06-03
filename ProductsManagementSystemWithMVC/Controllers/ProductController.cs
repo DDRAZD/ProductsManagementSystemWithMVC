@@ -14,7 +14,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
         public ActionResult Index(string search="", string SortColumn="ProductName", string IconClass="fa-sort-asc", int PageNo=1)
         {
 
-            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+            CompanyDbContext db = new CompanyDbContext();
             List<Product> products = db.Products.Where(item => item.ProductName.Contains(search)).ToList();
             ViewBag.Search = search;
             ViewBag.SortColumn = SortColumn;
@@ -96,7 +96,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
         public ActionResult Details(long id)
         {
 
-            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+            CompanyDbContext db = new CompanyDbContext();
             Product product = db.Products.Where(item => item.ProductID==id).FirstOrDefault();
 
 
@@ -108,7 +108,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
         public ActionResult Create()
         {
-            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+            CompanyDbContext db = new CompanyDbContext();
             ViewBag.Categories =  db.Categories.ToList();
             ViewBag.Brands = db.Brands.ToList();
 
@@ -117,7 +117,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
         [HttpPost]
         public ActionResult Create(Product product)
         {
-            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+            CompanyDbContext db = new CompanyDbContext();
 
             db.Products.Add(product);
             //Request.Files is an array that catches all the files submitted to the browser (built in)
@@ -137,7 +137,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
         public ActionResult Edit(long id)
         {
-            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+            CompanyDbContext db = new CompanyDbContext();
 
             Product productToEdit = db.Products.Where(product => product.ProductID == id).FirstOrDefault();
 
@@ -150,7 +150,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
         [HttpPost]
         public ActionResult Edit(Product product)
         {
-            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+            CompanyDbContext db = new CompanyDbContext();
             Product productToEdit = db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault();
 
             //update the product but dont touch the id as that is a primary key
@@ -170,7 +170,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
         public ActionResult Delete(long id)
         {
-            EFDBFirstDatabaseEntities db = new EFDBFirstDatabaseEntities();
+            CompanyDbContext db = new CompanyDbContext();
             Product productTodelte = db.Products.Where(p => p.ProductID == id).FirstOrDefault();
 
             db.Products.Remove(productTodelte);
