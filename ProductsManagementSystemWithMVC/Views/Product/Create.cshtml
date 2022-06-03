@@ -1,5 +1,6 @@
 ﻿
 @model ProductsManagementSystemWithMVC.Models.Product
+@using ProductsManagementSystemWithMVC.HtmlHelpers
 
 @{
     ViewBag.Title = "Create";
@@ -59,7 +60,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="Image">Image</label>
-            <input type="file" class="form-control-file" id="Image" name="Phote" />
+            @Html.File("form-control-file")           
         </div>
     </div>
 
