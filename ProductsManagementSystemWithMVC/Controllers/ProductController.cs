@@ -10,11 +10,13 @@ namespace ProductsManagementSystemWithMVC.Controllers
 {
     public class ProductController : Controller
     {
+
+        CompanyDbContext db = new CompanyDbContext();
         [Route("Product/Index")]
         public ActionResult Index(string search="", string SortColumn="ProductName", string IconClass="fa-sort-asc", int PageNo=1)
         {
 
-            CompanyDbContext db = new CompanyDbContext();
+            //CompanyDbContext db = new CompanyDbContext();
             List<Product> products = db.Products.Where(item => item.ProductName.Contains(search)).ToList();
             ViewBag.Search = search;
             ViewBag.SortColumn = SortColumn;
@@ -96,7 +98,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
         public ActionResult Details(long id)
         {
 
-            CompanyDbContext db = new CompanyDbContext();
+           // CompanyDbContext db = new CompanyDbContext();
             Product product = db.Products.Where(item => item.ProductID==id).FirstOrDefault();
 
 
@@ -108,36 +110,47 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
         public ActionResult Create()
         {
-            CompanyDbContext db = new CompanyDbContext();
+           // CompanyDbContext db = new CompanyDbContext();
             ViewBag.Categories =  db.Categories.ToList();
             ViewBag.Brands = db.Brands.ToList();
 
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create([Bind(Include = "ProductID, ProductName, Price, DOP, AvailabilityStatus, CategoryID, BrandID, Active, Photo")]Product product)
         {
-            CompanyDbContext db = new CompanyDbContext();
 
-            db.Products.Add(product);
-            //Request.Files is an array that catches all the files submitted to the browser (built in)
-       
-
-            if (Request.Files.Count >= 1)
+            if (ModelState.IsValid)
             {
-                var file = Request.Files[0]; //assuming only one file was submitted; this also requires the encrypt type to be set in the view
-                var imgBytes = new Byte[file.ContentLength]; //creating a byte array to store the file (better as more encrypted)
-                file.InputStream.Read(imgBytes, 0, file.ContentLength); // writing all the bytes from the file into imgBytes
-                var base64String = Convert.ToBase64String(imgBytes, 0, imgBytes.Length);//convert the bytes to string before storing in DB
-                product.Photo = base64String;
+
+
+
+                //Request.Files is an array that catches all the files submitted to the browser (built in)
+
+
+                if (Request.Files.Count >= 1)
+                {
+                    var file = Request.Files[0]; //assuming only one file was submitted; this also requires the encrypt type to be set in the view
+                    var imgBytes = new Byte[file.ContentLength]; //creating a byte array to store the file (better as more encrypted)
+                    file.InputStream.Read(imgBytes, 0, file.ContentLength); // writing all the bytes from the file into imgBytes
+                    var base64String = Convert.ToBase64String(imgBytes, 0, imgBytes.Length);//convert the bytes to string before storing in DB
+                    product.Photo = base64String;
+                }
+                db.Products.Add(product);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            else
+            {
+                ViewBag.Categories = db.Categories.ToList();
+                ViewBag.Brands = db.Brands.ToList();
+                return View();
+            }
         }
 
         public ActionResult Edit(long id)
         {
-            CompanyDbContext db = new CompanyDbContext();
+          //  CompanyDbContext db = new CompanyDbContext();
 
             Product productToEdit = db.Products.Where(product => product.ProductID == id).FirstOrDefault();
 
@@ -150,7 +163,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
         [HttpPost]
         public ActionResult Edit(Product product)
         {
-            CompanyDbContext db = new CompanyDbContext();
+           // CompanyDbContext db = new CompanyDbContext();
             Product productToEdit = db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault();
 
             //update the product but dont touch the id as that is a primary key
@@ -170,7 +183,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
         public ActionResult Delete(long id)
         {
-            CompanyDbContext db = new CompanyDbContext();
+            //CompanyDbContext db = new CompanyDbContext();
             Product productTodelte = db.Products.Where(p => p.ProductID == id).FirstOrDefault();
 
             db.Products.Remove(productTodelte);
