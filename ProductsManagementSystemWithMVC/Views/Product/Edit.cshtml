@@ -27,16 +27,16 @@
         </div>
        
             string dateOfPurchase = "";
-            if (Model.DateOfPurchase.HasValue)
+            if (Model.DOP.HasValue)
             {
-                dateOfPurchase = Model.DateOfPurchase.Value.ToString("yyyy-MM-dd");
+                dateOfPurchase = Model.DOP.Value.ToString("yyyy-MM-dd");
             }
         
         <!--second row-->
         <div class="form-row">
 
             <div class="form-group col-md-6">
-                @Html.LabelFor(item=>item.DateOfPurchase)
+                @Html.LabelFor(item=>item.DOP)
                <input type="date" class="form-control" id="DateOfPurchase" placeholder="Date Of Purchase" name="DateOfPurchase" value="@dateOfPurchase">
             </div>
             <div class="form-group col-md-6">

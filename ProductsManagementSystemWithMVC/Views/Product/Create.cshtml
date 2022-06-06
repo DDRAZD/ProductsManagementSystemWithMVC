@@ -26,8 +26,8 @@
     <div class="form-row">
 
         <div class="form-group col-md-6">
-            @Html.LabelFor(item=>item.DateOfPurchase)
-            @Html.TextBoxFor(item=>item.DateOfPurchase, new {placeholder="Date of Purchase", @class="form-control"})
+            @Html.LabelFor(item=>item.DOP)
+            @Html.TextBoxFor(item=>item.DOP, new {placeholder="Date of Purchase", @class="form-control", type="date"})
         </div>
         <div class="form-group col-md-6">
             @Html.LabelFor(item => item.AvailabilityStatus, new { @class = "form-check-label" })

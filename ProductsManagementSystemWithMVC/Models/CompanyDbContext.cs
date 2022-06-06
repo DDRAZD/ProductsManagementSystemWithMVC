@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using ProductsManagementSystemWithMVC.Migrations;
 
 
 namespace ProductsManagementSystemWithMVC.Models
@@ -15,7 +16,7 @@ namespace ProductsManagementSystemWithMVC.Models
         //constructor to build the data base
         public CompanyDbContext():base("MyConnectionString")
         {
-
+           Database.SetInitializer(new MigrateDatabaseToLatestVersion<CompanyDbContext, Configuration>());
         }
 
         public DbSet<Brand> Brands { get; set; }

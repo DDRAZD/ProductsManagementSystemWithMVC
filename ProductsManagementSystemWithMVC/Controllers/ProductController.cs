@@ -68,9 +68,9 @@ namespace ProductsManagementSystemWithMVC.Controllers
             else if (SortColumn == "DateOfPurchase")
             {
                 if (IconClass == "fa-sort-asc")
-                    products = products.OrderBy(temp => temp.DateOfPurchase).ToList();
+                    products = products.OrderBy(temp => temp.DOP).ToList();
                 else
-                    products = products.OrderByDescending(temp => temp.DateOfPurchase).ToList();
+                    products = products.OrderByDescending(temp => temp.DOP).ToList();
             }
             else if (SortColumn == "Active")
             {
@@ -156,7 +156,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
             //update the product but dont touch the id as that is a primary key
             productToEdit.ProductName = product.ProductName;
             productToEdit.Price = product.Price;
-            productToEdit.DateOfPurchase = product.DateOfPurchase;
+            productToEdit.DOP = product.DOP;
             productToEdit.CategoryID = product.CategoryID;
             productToEdit.BrandID = product.BrandID;
             productToEdit.Active = product.Active;

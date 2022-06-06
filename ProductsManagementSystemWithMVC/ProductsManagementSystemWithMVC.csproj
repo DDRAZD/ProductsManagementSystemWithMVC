@@ -240,6 +240,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\FIleHelper.cs" />
+    <Compile Include="Migrations\202206060011124_InitialData_test.cs" />
+    <Compile Include="Migrations\202206060011124_InitialData_test.designer.cs">
+      <DependentUpon>202206060011124_InitialData_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206060020008_QuantityColumn.cs" />
+    <Compile Include="Migrations\202206060020008_QuantityColumn.designer.cs">
+      <DependentUpon>202206060020008_QuantityColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Category.cs" />
@@ -287,6 +295,14 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202206060011124_InitialData_test.resx">
+      <DependentUpon>202206060011124_InitialData_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206060020008_QuantityColumn.resx">
+      <DependentUpon>202206060020008_QuantityColumn.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

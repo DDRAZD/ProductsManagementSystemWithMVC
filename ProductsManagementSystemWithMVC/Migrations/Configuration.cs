@@ -9,8 +9,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            ContextKey = "ProductsManagementSystemWithMVC.Models.CompanyDbContext";
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(ProductsManagementSystemWithMVC.Models.CompanyDbContext context)
@@ -19,6 +18,10 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
+
+            context.Brands.AddOrUpdate(new Models.Brand() { BrandID = 1, BrandName = "Samsung" });
+            context.Categories.AddOrUpdate(new Models.Category() { CategoryID = 1, CategoryName = "Appliances" });
+            context.Products.AddOrUpdate(new Models.Product() { ProductID = 1, ProductName ="iPhone", AvailabilityStatus="InStock", DOP=DateTime.Now, Active=true, Price=1500, BrandID=1, CategoryID=1});
         }
     }
 }
