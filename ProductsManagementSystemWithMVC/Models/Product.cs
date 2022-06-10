@@ -17,12 +17,12 @@ namespace ProductsManagementSystemWithMVC.Models
 
 
         [Display(Name ="Product Name")]
-        [Required]
+        [Required(ErrorMessage ="Product Name cannot be blank")]
         public string ProductName { get; set; }
 
 
         [Display(Name ="Price")]
-        [Required]
+        [Required(ErrorMessage ="Price cannot be blank")]
         public Nullable<decimal> Price { get; set; }
 
 
@@ -32,15 +32,16 @@ namespace ProductsManagementSystemWithMVC.Models
 
 
         [Display(Name ="Availablity Status")]
+        [Required]
         public string AvailabilityStatus { get; set; }
 
 
         [Display(Name ="Category ID")]
-        [Required]
+        [Required(ErrorMessage ="You must choose a category")]
         public Nullable<long> CategoryID { get; set; }
         
         [Display(Name = "Brand ID")]
-        [Required]
+        [Required(ErrorMessage ="You must choose a brand")]
         public Nullable<long> BrandID { get; set; }
 
         [Display(Name ="Active")]

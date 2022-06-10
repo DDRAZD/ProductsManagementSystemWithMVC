@@ -257,6 +257,10 @@
     <Compile Include="Migrations\202206061140507_RequiredValidation.designer.cs">
       <DependentUpon>202206061140507_RequiredValidation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206101144264_AvailabilityStatusRequired.cs" />
+    <Compile Include="Migrations\202206101144264_AvailabilityStatusRequired.designer.cs">
+      <DependentUpon>202206101144264_AvailabilityStatusRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Category.cs" />
@@ -314,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206061140507_RequiredValidation.resx">
       <DependentUpon>202206061140507_RequiredValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206101144264_AvailabilityStatusRequired.resx">
+      <DependentUpon>202206101144264_AvailabilityStatusRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
