@@ -18,11 +18,15 @@ namespace ProductsManagementSystemWithMVC.Models
 
         [Display(Name ="Product Name")]
         [Required(ErrorMessage ="Product Name cannot be blank")]
+        [RegularExpression(@"^[A-Za-z ]*$",ErrorMessage ="Alphabet only")]
+        [MaxLength(50,ErrorMessage ="product name can be maximum of 50 characters")]
+        [MinLength(2,ErrorMessage ="Product name must by 2 charachters or longer")]
         public string ProductName { get; set; }
 
 
         [Display(Name ="Price")]
         [Required(ErrorMessage ="Price cannot be blank")]
+        [Range(0,1000000,ErrorMessage ="Price must be positive and under 1,000,000")]
         public Nullable<decimal> Price { get; set; }
 
 
