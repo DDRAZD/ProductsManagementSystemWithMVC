@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ProductsManagementSystemWithMVC.CustomValidations;
 
 
 namespace ProductsManagementSystemWithMVC.Models
@@ -27,6 +28,7 @@ namespace ProductsManagementSystemWithMVC.Models
         [Display(Name ="Price")]
         [Required(ErrorMessage ="Price cannot be blank")]
         [Range(0,1000000,ErrorMessage ="Price must be positive and under 1,000,000")]
+        [DivisibleBy10(ErrorMessage = "price should be in mulitples of 10")]
         public Nullable<decimal> Price { get; set; }
 
 
