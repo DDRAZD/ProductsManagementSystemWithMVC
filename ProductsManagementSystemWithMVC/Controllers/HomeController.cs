@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ProductsManagementSystemWithMVC.Models;
 
 namespace ProductsManagementSystemWithMVC.Controllers
 {
@@ -113,6 +114,25 @@ namespace ProductsManagementSystemWithMVC.Controllers
             Response.Headers["Server"] = "My Server";
             Response.StatusCode = 500;
             return View();
+        }
+
+        public ActionResult UserRegistration()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UserRegistration(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                return Content("Valid");
+            }
+            else
+            {
+                IEnumerable<string> allErrors = ModelState.Values.SelectMany(v => v.Errors).ToList().Select(error => error.ErrorMessage);  //convert list of error objects into a List<string>
+                return Content(string.Join(". ", allErrors));
+            }
+            
         }
     }
 }

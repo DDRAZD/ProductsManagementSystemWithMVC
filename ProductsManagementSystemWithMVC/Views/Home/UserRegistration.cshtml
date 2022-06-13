@@ -1,0 +1,72 @@
+﻿
+@model ProductsManagementSystemWithMVC.Models.User
+
+@{
+    ViewBag.Title = "UserRegistration";
+}
+
+<h2>User Registration Page</h2>
+
+@using (Html.BeginForm("UserRegistration", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(item => item.UserName)
+            @Html.TextBoxFor(item => item.UserName, new { placeholder = "User Name", @class = "form-control" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(item => item.Mobile)
+            @Html.TextBoxFor(item => item.Mobile, new { placeholder = "Mobile", @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(item => item.UserEmail)
+            @Html.TextBoxFor(item => item.UserEmail, new { placeholder = "email address", @class = "form-control" })
+        </div>
+    </div>
+    
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            @Html.LabelFor(temp => temp.Photography)
+            @Html.CheckBoxFor(temp => temp.Photography, new { placeholder = "Photography" })
+            @Html.ValidationMessageFor(temp => temp.Photography)
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(temp => temp.Gardening)
+            @Html.CheckBoxFor(temp => temp.Gardening, new { placeholder = "Gardening" })
+            @Html.ValidationMessageFor(temp => temp.Gardening)
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(temp => temp.Dance)
+            @Html.CheckBoxFor(temp => temp.Dance, new { placeholder = "Dance" })
+            @Html.ValidationMessageFor(temp => temp.Dance)
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(temp => temp.Hiking)
+            @Html.CheckBoxFor(temp => temp.Hiking, new { placeholder = "Hiking" })
+            @Html.ValidationMessageFor(temp => temp.Hiking)
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(temp => temp.Painting)
+            @Html.CheckBoxFor(temp => temp.Painting, new { placeholder = "Painting" })
+            @Html.ValidationMessageFor(temp => temp.Painting)
+        </div>
+    </div>
+
+    @Html.ValidationSummary()
+
+
+    <button type="submit" class="btn btn-success">Submit Registration</button>
+    <a class="btn btn-danger" href="@Url.Action("UserRegistration","Home")">Cancel</a>
+
+    @Html.ValidationSummary()
+}
+
+
+
