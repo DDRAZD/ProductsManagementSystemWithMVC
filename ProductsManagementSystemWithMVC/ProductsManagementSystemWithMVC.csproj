@@ -277,6 +277,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\FIleHelper.cs" />
+    <Compile Include="IdentityMigrations\202206141042481_Initial.cs" />
+    <Compile Include="IdentityMigrations\202206141042481_Initial.designer.cs">
+      <DependentUpon>202206141042481_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigrations\202206141048585_CountryColumn.cs" />
+    <Compile Include="IdentityMigrations\202206141048585_CountryColumn.designer.cs">
+      <DependentUpon>202206141048585_CountryColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdentityMigrations\Configuration.cs" />
+    <Compile Include="Identity\ApplicationDbContext.cs" />
+    <Compile Include="Identity\ApplicationUser.cs" />
+    <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="Identity\ApplicationUserStore.cs" />
     <Compile Include="Migrations\202206060011124_InitialData_test.cs" />
     <Compile Include="Migrations\202206060011124_InitialData_test.designer.cs">
       <DependentUpon>202206060011124_InitialData_test.cs</DependentUpon>
@@ -349,6 +362,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="IdentityMigrations\202206141042481_Initial.resx">
+      <DependentUpon>202206141042481_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IdentityMigrations\202206141048585_CountryColumn.resx">
+      <DependentUpon>202206141048585_CountryColumn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206060011124_InitialData_test.resx">
       <DependentUpon>202206060011124_InitialData_test.cs</DependentUpon>
     </EmbeddedResource>
