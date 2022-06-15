@@ -35,15 +35,23 @@
             <li class="nav-item">
                 <a class="nav-link" href="/Brand/Index">Brands</a>
             </li>
+
         </ul>
         <!--adding a search box-->
         <form class="form-inline" action="~/product/index">
-            @Html.Label("Search", new {@class="mr-1"})
-            @Html.TextBox("Search", ViewBag.search as string, new {@class="form-control mr-1", placeholder= "Search"})
-            
-            
+            @Html.Label("Search", new { @class = "mr-1" })
+            @Html.TextBox("Search", ViewBag.search as string, new { @class = "form-control mr-1", placeholder = "Search" })
+
+
             <button type="submit" class="btn btn-primary">Go</button>
         </form>
+        @if (User.Identity.IsAuthenticated == true)
+        {
+            <div>
+                Welcome @User.Identity.Name
+            </div>
+
+        }
     </nav>
    
 
@@ -59,7 +67,10 @@
                 @RenderSection("SideBarOptions", required: false);
             </div>
 
+            
         </div>
+       
+
         <div class="col-10" style="min-height:610px; padding:20px">
             <div class="container-fluid" style="padding: 0px">
                 @RenderBody()

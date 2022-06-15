@@ -37,10 +37,20 @@
                 <a class="nav-link" href="/Brand/Index">Brands</a>
             </li>
         </ul>
+        @if (User.Identity.IsAuthenticated == true)
+        {
+            <div>
+                Welcome to @User.Identity.Name
+            </div>
 
+        }
     </nav>
+
+   
+    
     <div class="container-fluid">
         @RenderBody()
     </div>
+
 </body>
 </html>
