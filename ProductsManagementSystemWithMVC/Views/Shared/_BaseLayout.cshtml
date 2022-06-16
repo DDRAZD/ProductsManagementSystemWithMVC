@@ -21,21 +21,21 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-success navbar-dark">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/home/index">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/home/products">Products</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/home/Contact">Contact</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Categories/Index">Categories</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Brand/Index">Brands</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="/home/index">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/home/products">Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="/home/Contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="/Categories/Index">Categories</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/Brand/Index">Brands</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/Account/Login">Login</a> </li>
+            @if (User.Identity.IsAuthenticated == true)
+            {
+                <li class="nav-item"> <a class="nav-link" href="/Account/Logout">Logout</a> </li>
+
+            }
+            else
+            {
+                <li class="nav-item"> <a class="nav-link" href="/Account/Register">Register</a> </li>
+            }
         </ul>
         @if (User.Identity.IsAuthenticated == true)
         {

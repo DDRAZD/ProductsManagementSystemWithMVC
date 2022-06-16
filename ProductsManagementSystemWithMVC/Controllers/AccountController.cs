@@ -14,12 +14,13 @@ namespace ProductsManagementSystemWithMVC.Controllers
 {
     public class AccountController : Controller
     {
-       
+       //GET request
         public ActionResult Register()
         {
             return View();  
         }
 
+        //Post request, after form submission
         [HttpPost]
         public ActionResult Register(RegisterViewModel rvm)
         {
@@ -62,18 +63,51 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
 
 
-
-        [Route("Account/Login")]
-        public ActionResult Login(string Username, string Password)
+        //Get Request
+     //   [Route("Account/Login")] commenting it out as it seems to overide the post request from the form
+        public ActionResult Login()
         {
 
-            if (Username == "admin" && Password == "manager")
-                return RedirectToAction("Dashboard", "Admin");
-            else
-                return RedirectToAction("InvalidLogin");//redirects within same controller so no need to specify controller here
+           return View();
             
         }
-        [Route("Account/invalidlogin")]
+
+        //Post request
+        [HttpPost]
+        public ActionResult Login(LoginViewModel lvm)
+        {
+            //login
+            var appDbContext = new ApplicationDbContext();
+            var userStore = new ApplicationUserStore(appDbContext);
+            var userManager = new ApplicationUserManager(userStore);
+
+            var user = userManager.Find(lvm.Username, lvm.Password);
+            if(user != null) //successufl login
+            {
+                var authenticationManager = HttpContext.GetOwinContext().Authentication;
+                var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                authenticationManager.SignIn(new AuthenticationProperties(), userIdentity);
+                return RedirectToAction("Index", "Home");
+            }
+            else //matching user is not found in the database
+            {
+                ModelState.AddModelError("myerror", "Invalid username or password");//this will be sent to the view and displayed in the validation summary of the view
+                return View();
+            }
+            
+
+        }
+
+        public ActionResult Logout()
+        {
+            //creating an authentication manager which is responsbile to login and out (like before):
+            var authenticationManager = HttpContext.GetOwinContext().Authentication;
+            authenticationManager.SignOut();
+            return RedirectToAction("index", "home");
+        }
+
+
+            [Route("Account/invalidlogin")]
         public ActionResult InvalidLogin()
         {
             return View();
