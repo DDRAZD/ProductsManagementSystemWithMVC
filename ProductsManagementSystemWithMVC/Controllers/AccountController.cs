@@ -14,10 +14,10 @@ namespace ProductsManagementSystemWithMVC.Controllers
 {
     public class AccountController : Controller
     {
-       //GET request
+        //GET request
         public ActionResult Register()
         {
-            return View();  
+            return View();
         }
 
         //Post request, after form submission
@@ -31,9 +31,9 @@ namespace ProductsManagementSystemWithMVC.Controllers
                 var userStore = new ApplicationUserStore(appDbContext);
                 var userManager = new ApplicationUserManager(userStore);
                 var passwordHash = Crypto.HashPassword(rvm.Password);
-                var user = new ApplicationUser() { Email = rvm.Email, UserName=rvm.Username, PasswordHash= passwordHash, City=rvm.City, Country=rvm.Country,  Address=rvm.Address, Birthday = rvm.DataOfBirth, PhoneNumber=rvm.Mobile};
+                var user = new ApplicationUser() { Email = rvm.Email, UserName = rvm.Username, PasswordHash = passwordHash, City = rvm.City, Country = rvm.Country, Address = rvm.Address, Birthday = rvm.DataOfBirth, PhoneNumber = rvm.Mobile };
 
-               IdentityResult result =  userManager.Create(user);
+                IdentityResult result = userManager.Create(user);
 
                 if (result.Succeeded)
                 {
@@ -46,7 +46,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
                     authenticationManager.SignIn(new AuthenticationProperties(), userIdentity);
                 }
 
-                return RedirectToAction("Register","Account");
+                return RedirectToAction("Register", "Account");
             }
             else
             {
@@ -55,7 +55,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
             }
 
 
-            
+
         }
 
 
@@ -64,12 +64,12 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
 
         //Get Request
-     //   [Route("Account/Login")] commenting it out as it seems to overide the post request from the form
+        //   [Route("Account/Login")] commenting it out as it seems to overide the post request from the form
         public ActionResult Login()
         {
 
-           return View();
-            
+            return View();
+
         }
 
         //Post request
@@ -82,7 +82,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
             var userManager = new ApplicationUserManager(userStore);
 
             var user = userManager.Find(lvm.Username, lvm.Password);
-            if(user != null) //successufl login
+            if (user != null) //successufl login
             {
                 var authenticationManager = HttpContext.GetOwinContext().Authentication;
                 var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
@@ -94,7 +94,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
                 ModelState.AddModelError("myerror", "Invalid username or password");//this will be sent to the view and displayed in the validation summary of the view
                 return View();
             }
-            
+
 
         }
 
@@ -105,6 +105,16 @@ namespace ProductsManagementSystemWithMVC.Controllers
             authenticationManager.SignOut();
             return RedirectToAction("index", "home");
         }
+
+        public ActionResult MyProfile()
+        {
+            var appDbContext = new ApplicationDbContext();
+            var userStore = new ApplicationUserStore(appDbContext);
+            var userManager = new ApplicationUserManager(userStore);
+            ApplicationUser appUser=  userManager.FindById(User.Identity.GetUserId());
+            return View(appUser);
+        }
+
 
 
             [Route("Account/invalidlogin")]

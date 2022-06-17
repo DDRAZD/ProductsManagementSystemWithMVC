@@ -19,9 +19,13 @@
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
 
-            context.Brands.AddOrUpdate(new Models.Brand() { BrandID = 1, BrandName = "Samsung" });
+          /*  context.Brands.AddOrUpdate(new Models.Brand() { BrandID = 1, BrandName = "Samsung" });
             context.Categories.AddOrUpdate(new Models.Category() { CategoryID = 1, CategoryName = "Appliances" });
-            context.Products.AddOrUpdate(new Models.Product() { ProductID = 1, ProductName ="iPhone", AvailabilityStatus="InStock", DOP=DateTime.Now, Active=true, Price=1500, BrandID=1, CategoryID=1});
+            context.Products.AddOrUpdate(x=> x.ProductID, new Models.Product() { ProductID = 1, ProductName ="iPhone", AvailabilityStatus="InStock", DOP=DateTime.Now, Active=true, Price=1500, BrandID=1, CategoryID=2});*/
+
+            context.Brands.AddOrUpdate(new Models.Brand() { BrandID = 1, BrandName = "Samsung" });
+            context.Categories.AddOrUpdate(new Models.Category() { CategoryID = 1, CategoryName = "Electronics" });
+            context.Products.AddOrUpdate(new Models.Product() { ProductID = 1, ProductName = "Samsung Galaxy Mobile", CategoryID = 1, DOP = DateTime.Now, Active = true, BrandID = 1, Photo = null, Price = 10000, AvailabilityStatus = "InStock" });
         }
     }
 }
