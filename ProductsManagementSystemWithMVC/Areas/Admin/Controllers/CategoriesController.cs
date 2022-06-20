@@ -5,16 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using ProductsManagementSystemWithMVC.Models;
 
-namespace ProductsManagementSystemWithMVC.Controllers
+namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
 {
-    public class BrandController : Controller
+    public class CategoriesController : Controller
     {
-        // GET: Brand/index
+        // GET: Admin/Categories
         public ActionResult Index()
         {
             CompanyDbContext db = new CompanyDbContext();
-            List<Brand> brands = db.Brands.ToList();
-            return View(brands);
+            List<Category> categories = db.Categories.ToList();
+            return View(categories);
         }
     }
 }

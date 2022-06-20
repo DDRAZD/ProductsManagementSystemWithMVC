@@ -5,15 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using ProductsManagementSystemWithMVC.Models;
 
-
-namespace ProductsManagementSystemWithMVC.Controllers
+namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
 {
-    public class ProductController : Controller
+    public class ProductsController : Controller
     {
 
         CompanyDbContext db = new CompanyDbContext();
         [Route("Product/Index")]
-        public ActionResult Index(string search="", string SortColumn="ProductName", string IconClass="fa-sort-asc", int PageNo=1)
+        public ActionResult Index(string search = "", string SortColumn = "ProductName", string IconClass = "fa-sort-asc", int PageNo = 1)
         {
 
             //CompanyDbContext db = new CompanyDbContext();
@@ -24,21 +23,21 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
             //sorting is done at the controller level, before sent to the view
 
-            if(SortColumn == "ProductID")
+            if (SortColumn == "ProductID")
             {
-               if(IconClass == "fa-sort-asc")
-                   products = products.OrderBy(temp => temp.ProductID).ToList();
-               else
-                    products=products.OrderByDescending(temp => temp.ProductID).ToList();
+                if (IconClass == "fa-sort-asc")
+                    products = products.OrderBy(temp => temp.ProductID).ToList();
+                else
+                    products = products.OrderByDescending(temp => temp.ProductID).ToList();
             }
-            else if (SortColumn =="ProductName")
+            else if (SortColumn == "ProductName")
             {
                 if (IconClass == "fa-sort-asc")
                     products = products.OrderBy(temp => temp.ProductName).ToList();
                 else
                     products = products.OrderByDescending(temp => temp.ProductName).ToList();
             }
-            else if (SortColumn=="Price")
+            else if (SortColumn == "Price")
             {
                 if (IconClass == "fa-sort-asc")
                     products = products.OrderBy(temp => temp.Price).ToList();
@@ -46,7 +45,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
                     products = products.OrderByDescending(temp => temp.Price).ToList();
 
             }
-            else if (SortColumn=="AvailabilityStatus")
+            else if (SortColumn == "AvailabilityStatus")
             {
                 if (IconClass == "fa-sort-asc")
                     products = products.OrderBy(temp => temp.AvailabilityStatus).ToList();
@@ -94,15 +93,15 @@ namespace ProductsManagementSystemWithMVC.Controllers
             return View(products);
         }
 
-        
+
         public ActionResult Details(long id)
         {
 
-           // CompanyDbContext db = new CompanyDbContext();
-            Product product = db.Products.Where(item => item.ProductID==id).FirstOrDefault();
+            // CompanyDbContext db = new CompanyDbContext();
+            Product product = db.Products.Where(item => item.ProductID == id).FirstOrDefault();
 
 
-            
+
             return View(product);
 
 
@@ -110,14 +109,14 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
         public ActionResult Create()
         {
-           // CompanyDbContext db = new CompanyDbContext();
-            ViewBag.Categories =  db.Categories.ToList();
+            // CompanyDbContext db = new CompanyDbContext();
+            ViewBag.Categories = db.Categories.ToList();
             ViewBag.Brands = db.Brands.ToList();
 
             return View();
         }
         [HttpPost]
-        public ActionResult Create([Bind(Include = "ProductID, ProductName, Price, DOP, AvailabilityStatus, CategoryID, BrandID, Active, Photo")]Product product)
+        public ActionResult Create([Bind(Include = "ProductID, ProductName, Price, DOP, AvailabilityStatus, CategoryID, BrandID, Active, Photo")] Product product)
         {
 
             if (ModelState.IsValid)
@@ -150,11 +149,11 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
         public ActionResult Edit(long id)
         {
-          //  CompanyDbContext db = new CompanyDbContext();
+            //  CompanyDbContext db = new CompanyDbContext();
 
             Product productToEdit = db.Products.Where(product => product.ProductID == id).FirstOrDefault();
 
-            
+
             ViewBag.Categories = db.Categories.ToList();
             ViewBag.Brands = db.Brands.ToList();
 
@@ -163,7 +162,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
         [HttpPost]
         public ActionResult Edit(Product product)
         {
-           // CompanyDbContext db = new CompanyDbContext();
+            // CompanyDbContext db = new CompanyDbContext();
             Product productToEdit = db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault();
 
             //update the product but dont touch the id as that is a primary key
@@ -178,7 +177,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
             db.SaveChanges();
 
 
-            return RedirectToAction("Index","Product");
+            return RedirectToAction("Index", "Product");
         }
 
         public ActionResult Delete(long id)

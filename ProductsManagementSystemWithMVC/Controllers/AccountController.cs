@@ -80,20 +80,52 @@ namespace ProductsManagementSystemWithMVC.Controllers
             var appDbContext = new ApplicationDbContext();
             var userStore = new ApplicationUserStore(appDbContext);
             var userManager = new ApplicationUserManager(userStore);
+            var user = userManager.Find(lvm.Username, lvm.Password);
+            if (user != null)
+            {
+                //login
+                var authenticationManager = HttpContext.GetOwinContext().Authentication;
+                var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                authenticationManager.SignIn(new AuthenticationProperties(), userIdentity);
 
+                if (userManager.IsInRole(user.Id, "Admin"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Admin" });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("myerror", "Invalid username or password");
+                return View();
+            }
+
+            /*
             var user = userManager.Find(lvm.Username, lvm.Password);
             if (user != null) //successufl login
             {
                 var authenticationManager = HttpContext.GetOwinContext().Authentication;
                 var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 authenticationManager.SignIn(new AuthenticationProperties(), userIdentity);
-                return RedirectToAction("Index", "Home");
+               
+                if(userManager.IsInRole(user.Id,"Admin"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Admin" });
+                }
+                else
+                { 
+                    return RedirectToAction("Index", "Home"); 
+                }
+               
             }
             else //matching user is not found in the database
             {
                 ModelState.AddModelError("myerror", "Invalid username or password");//this will be sent to the view and displayed in the validation summary of the view
                 return View();
-            }
+            }*/
 
 
         }

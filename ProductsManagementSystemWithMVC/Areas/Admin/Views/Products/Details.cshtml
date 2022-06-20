@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/AdminALayoutPage1.cshtml";
 }
 
 
@@ -60,4 +61,4 @@
     </tr>
 </table>
 
-<a href="@Url.Action("index","Product")">Back to Products</a>
+<a href="@Url.Action("index","Product", new {Area="Admin"})">Back to Products</a>

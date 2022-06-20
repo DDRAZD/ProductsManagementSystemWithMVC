@@ -4,7 +4,9 @@
 
 @{
     ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_SecondaryLayout.cshtml";
 }
+
 
 <h2>Login</h2>
 
@@ -22,7 +24,7 @@
             @Html.TextBoxFor(item => item.Password, new { placeholder = "Password", @class = "form-control" })
             @Html.ValidationMessageFor(item => item.Password)
         </div>
-  </div>
+    </div>
     @Html.ValidationSummary()
     <button type="submit" class="btn btn-success">Login</button>
 

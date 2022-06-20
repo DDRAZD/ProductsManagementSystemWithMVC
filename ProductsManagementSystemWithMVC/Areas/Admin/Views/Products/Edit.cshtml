@@ -2,15 +2,16 @@
 
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/AdminALayoutPage1.cshtml";
 }
 
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { id = Model.ProductID, enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Product", new { area = "Admin" }, FormMethod.Post, new { id = Model.ProductID, enctype = "multipart/form-data" }))
 {
 
-    
+
         <!--first row-->
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -88,7 +89,7 @@
             </div>
         </div>
         <button type="submit" class="btn btn-success">Save</button>
-        <a class="btn btn-danger" href="@Url.Action("Index","Product")">Cancel</a>
+        <a class="btn btn-danger" href="@Url.Action("Index","Product", new {Area="Admin"})">Cancel</a>
 
    
 }

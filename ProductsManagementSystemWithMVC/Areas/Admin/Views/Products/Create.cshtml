@@ -4,10 +4,11 @@
 
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/AdminALayoutPage1.cshtml";
 }
 
 <h2>Create</h2>
-@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Product", new { area = "Admin" },FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <!--first row-->
     <div class="form-row">
@@ -78,7 +79,7 @@
     @Html.ValidationSummary()
     <button type="submit" class="btn btn-success">Submit</button>
 
-    <a class="btn btn-danger" href="@Url.Action("Index","Product")">Cancel</a>
+    <a class="btn btn-danger" href="@Url.Action("Index","Product", new {Area="Admin"})">Cancel</a>
 
 
 

@@ -40,10 +40,10 @@ namespace ProductsManagementSystemWithMVC
 
 
             //creating the actual admin user (previously, it was just the role)
-            if(roleManager.FindByName("admin") ==null)//if you cannot find any user that is an admin
+            if(roleManager.FindByName("admin1") ==null)//if you cannot find any user that is an admin
             {
                 var user = new ApplicationUser();
-                user.UserName = "admin";
+                user.UserName = "admin1";
                 user.Email = "admin@gmail.com";
                 string userPassword = "admin123";
                 var chkUser = userManager.Create(user,userPassword);//creates the user in the database
