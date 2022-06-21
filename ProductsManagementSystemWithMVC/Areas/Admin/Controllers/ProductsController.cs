@@ -11,7 +11,7 @@ namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
     {
 
         CompanyDbContext db = new CompanyDbContext();
-        [Route("Product/Index")]
+       // [Route("Home/Products")]
         public ActionResult Index(string search = "", string SortColumn = "ProductName", string IconClass = "fa-sort-asc", int PageNo = 1)
         {
 
