@@ -275,6 +275,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="CustomValidations\DivisibleBy10Attribute.cs" />
     <Compile Include="CustomValidations\UserHobbiesAttributes.cs" />
@@ -319,6 +320,10 @@
     <Compile Include="Migrations\202206101159220_AddedAdditionalValidation.designer.cs">
       <DependentUpon>202206101159220_AddedAdditionalValidation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206221127032_RemovingNullColumns.cs" />
+    <Compile Include="Migrations\202206221127032_RemovingNullColumns.designer.cs">
+      <DependentUpon>202206221127032_RemovingNullColumns.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Category.cs" />
@@ -344,7 +349,6 @@
     <Content Include="Views\Home\ResponseExample.cshtml" />
     <Content Include="Views\Shared\Contact.cshtml" />
     <Content Include="Views\Shared\_BaseLayout.cshtml" />
-    <Content Include="Views\Home\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_SecondaryLayout.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
@@ -357,6 +361,8 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\MyProfile.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -399,6 +405,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206101159220_AddedAdditionalValidation.resx">
       <DependentUpon>202206101159220_AddedAdditionalValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206221127032_RemovingNullColumns.resx">
+      <DependentUpon>202206221127032_RemovingNullColumns.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

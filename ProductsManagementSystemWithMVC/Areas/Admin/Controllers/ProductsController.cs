@@ -162,22 +162,33 @@ namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(Product product)
         {
-            // CompanyDbContext db = new CompanyDbContext();
-            Product productToEdit = db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault();
+            if(ModelState.IsValid)
+            {
+                // CompanyDbContext db = new CompanyDbContext();
+                Product productToEdit = db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault();
+                if (Request.Files.Count >= 1)
+                {
+                    var file = Request.Files[0]; //assuming only one file was submitted; this also requires the encrypt type to be set in the view
+                    var imgBytes = new Byte[file.ContentLength]; //creating a byte array to store the file (better as more encrypted)
+                    file.InputStream.Read(imgBytes, 0, file.ContentLength); // writing all the bytes from the file into imgBytes
+                    var base64String = Convert.ToBase64String(imgBytes, 0, imgBytes.Length);//convert the bytes to string before storing in DB
+                    productToEdit.Photo = base64String;
+                }
 
-            //update the product but dont touch the id as that is a primary key
-            productToEdit.ProductName = product.ProductName;
-            productToEdit.Price = product.Price;
-            productToEdit.DOP = product.DOP;
-            productToEdit.CategoryID = product.CategoryID;
-            productToEdit.BrandID = product.BrandID;
-            productToEdit.Active = product.Active;
-            productToEdit.AvailabilityStatus = product.AvailabilityStatus;
+                //update the product but dont touch the id as that is a primary key
+                productToEdit.ProductName = product.ProductName;
+                productToEdit.Price = product.Price;
+                productToEdit.DOP = product.DOP;
+                productToEdit.CategoryID = product.CategoryID;
+                productToEdit.BrandID = product.BrandID;
+                productToEdit.Active = product.Active;
+                productToEdit.AvailabilityStatus = product.AvailabilityStatus;
 
-            db.SaveChanges();
+                db.SaveChanges();
+            }
+            
 
-
-            return RedirectToAction("Index", "Product");
+            return RedirectToAction("Index", "Products");
         }
 
         public ActionResult Delete(long id)
@@ -188,7 +199,7 @@ namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
             db.Products.Remove(productTodelte);
             db.SaveChanges();
 
-            return RedirectToAction("Index", "Product");
+            return RedirectToAction("Index", "Products");
         }
     }
 }

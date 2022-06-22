@@ -69,7 +69,7 @@
     <!--check box-->
     <div class="form-group">
         <div class="form-check">
-            @Html.CheckBoxFor(temp => temp.Active.Value, new { @class = "form-check-input", value = "true" })
+            @Html.CheckBoxFor(temp => temp.Active, new { @class = "form-check-input", value = "true" })
             @Html.LabelFor(temp => temp.Active, new { @class = "form-check-label" })
             @Html.ValidationMessageFor(temp => temp.Photo)
 

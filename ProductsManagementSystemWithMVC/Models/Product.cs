@@ -19,7 +19,7 @@ namespace ProductsManagementSystemWithMVC.Models
 
         [Display(Name ="Product Name")]
         [Required(ErrorMessage ="Product Name cannot be blank")]
-        [RegularExpression(@"^[A-Za-z ]*$",ErrorMessage ="Alphabet only")]
+        [RegularExpression(@"^[A-Za-z0-9 ]*$",ErrorMessage ="Alphabet only")]
         [MaxLength(50,ErrorMessage ="product name can be maximum of 50 characters")]
         [MinLength(2,ErrorMessage ="Product name must by 2 charachters or longer")]
         public string ProductName { get; set; }
@@ -34,6 +34,7 @@ namespace ProductsManagementSystemWithMVC.Models
 
         [Display(Name ="Date of Purchase")]
         [Column("DateOfPurchase", TypeName ="datetime")]
+        [DisplayFormat(DataFormatString="d/M/yyyy", ApplyFormatInEditMode =true)]
         public Nullable<System.DateTime> DOP { get; set; }
 
 
@@ -44,14 +45,14 @@ namespace ProductsManagementSystemWithMVC.Models
 
         [Display(Name ="Category ID")]
         [Required(ErrorMessage ="You must choose a category")]
-        public Nullable<long> CategoryID { get; set; }
+        public long CategoryID { get; set; }
         
         [Display(Name = "Brand ID")]
         [Required(ErrorMessage ="You must choose a brand")]
-        public Nullable<long> BrandID { get; set; }
+        public long BrandID { get; set; }
 
         [Display(Name ="Active")]
-        public Nullable<bool> Active { get; set; }
+        public bool Active { get; set; }
         public string Photo { get; set; }
 
 
