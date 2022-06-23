@@ -1,0 +1,276 @@
+﻿@model List<ProductsManagementSystemWithMVC.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/ManagerLayoutPage1.cshtml";
+}
+
+<h2>Products</h2>
+<a href="@Url.Action("Create","Products", new {Area="Manager"})">Create Product</a>
+
+<table class="table">
+
+    <thead>
+        <tr class="table-secondary">
+            <th style="width:15%">Phote</th>
+            <th style="width:10%">
+                @if (ViewBag.IconClass == "fa-sort-desc")
+                {
+                   
+                   
+                 <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "ProductID", IconClass="fa-sort-asc", PageNo=1})">Product ID</a>
+                    if (ViewBag.SortColumn == "ProductID")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+                else
+                {
+                  <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "ProductID", IconClass="fa-sort-desc", PageNo=1})">Product ID</a>
+                   
+                    if (ViewBag.SortColumn == "ProductID")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+            </th>
+            <th style="width:21%">
+                @if (ViewBag.IconClass == "fa-sort-desc")
+                {
+                    <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "ProductName", IconClass="fa-sort-asc", PageNo=1})">Product Name</a>
+                    if (ViewBag.SortColumn == "ProductName")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+                else
+                {
+                    <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "ProductName", IconClass="fa-sort-desc", PageNo=1})">Product Name</a>
+
+                    if (ViewBag.SortColumn == "ProductName")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+
+
+            </th>
+            <th style="width:1%">
+
+                @if (ViewBag.IconClass == "fa-sort-desc")
+                {
+                    <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "Price", IconClass="fa-sort-asc", PageNo=1})">Price</a>
+                    if (ViewBag.SortColumn == "Price")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+                else
+                {
+            <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "Price", IconClass="fa-sort-desc", PageNo=1})">Price</a>
+
+                    if (ViewBag.SortColumn == "Price")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+
+            </th>
+            <th style="width:10%">
+
+                @if (ViewBag.IconClass == "fa-sort-desc")
+                {
+                    <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "DateOfPurchase", IconClass = "fa-sort-asc", PageNo=1 })">Date of Purchase</a>
+                    if (ViewBag.SortColumn == "DateOfPurchase")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+                else
+                {
+                     <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "DateOfPurchase", IconClass = "fa-sort-desc", PageNo=1 })">Date of Purchase</a>
+
+                    if (ViewBag.SortColumn == "DateOfPurchase")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+
+                </th>
+            <th style="width:10%">
+
+                @if (ViewBag.IconClass == "fa-sort-desc")
+                {
+                    <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "AvailabilityStatus", IconClass = "fa-sort-asc", PageNo=1 })">Availability</a>
+                    if (ViewBag.SortColumn == "AvailabilityStatus")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+                else
+                {
+            <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "AvailabilityStatus", IconClass = "fa-sort-desc", PageNo=1 })">Availability</a>
+
+                    if (ViewBag.SortColumn == "AvailabilityStatus")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+
+
+            </th>
+            <th style="width:10%">
+
+                @if (ViewBag.IconClass == "fa-sort-desc")
+                {
+                    <a href="@Url.Action("Index", "Products", new { Area="Manager", SortColumn = "CategoryID", IconClass = "fa-sort-asc", PageNo=1 })">Categoty</a>
+                    if (ViewBag.SortColumn == "CategoryID")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+                else
+                {
+                    <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "CategoryID", IconClass = "fa-sort-desc", PageNo=1 })">Categoty</a>
+
+                    if (ViewBag.SortColumn == "CategoryID")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+
+
+            </th>
+            <th style="width:8%">
+
+                @if (ViewBag.IconClass == "fa-sort-desc")
+                {
+                    <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "BrandID", IconClass = "fa-sort-asc", PageNo=1 })"> Brand</a>
+                    if (ViewBag.SortColumn == "BrandID")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+                else
+                {
+                    <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "BrandID", IconClass = "fa-sort-desc" ,PageNo=1})">Brand</a>
+
+                    if (ViewBag.SortColumn == "BrandID")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+
+            </th>
+            <th style="width:1%">
+
+                @if (ViewBag.IconClass == "fa-sort-desc")
+                {
+                    <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "Active", IconClass = "fa-sort-asc" , PageNo=1})"> Active</a>
+                    if (ViewBag.SortColumn == "Active")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+                else
+                {
+                    <a href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = "Active", IconClass = "fa-sort-desc", PageNo=1 })">Active</a>
+
+                    if (ViewBag.SortColumn == "Active")
+                    {
+                        <i class="fa @ViewBag.IconClass"></i>
+                    }
+                }
+
+
+
+            </th>
+            <th style="width:17%"></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var product in Model)
+        {
+        <tr>
+            <td><img src="data:image;base64, @product.Photo" width="100px" /></td>
+            <td>@Html.DisplayFor(temp => product.ProductID)</td>
+            <td>@Html.DisplayFor(temp => product.ProductName)</td>
+            <td>@Html.DisplayFor(temp => product.Price)</td>
+            <td>@Html.DisplayFor(temp => product.DOP)</td>
+            <td>@Html.DisplayFor(temp => product.AvailabilityStatus)</td>
+            <td>@if(product.Category!= null)
+            {
+                <span>@Html.DisplayFor(temp => product.Category.CategoryName)</span>
+            }
+            </td>
+            <td>
+                @if (product.Brand != null)
+                {
+                  <span>@Html.DisplayFor(temp => product.Brand.BrandName)</span>
+                }
+                    </td>
+            <td>@product.Active</td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { Area = "Manager", id = product.ProductID, controller = "Products" })
+                @Html.ActionLink("Edit", "Edit", new { Area = "Manager", id = product.ProductID, controller = "Products" })
+              
+              
+            </td>
+        </tr>
+            
+        }
+    <tr>
+        <td colspan="9">
+            @{
+                int PrevPageNo = ViewBag.PageNo - 1;
+                if (PrevPageNo == 0)
+                {
+                    PrevPageNo = 1;
+                }
+                int NextPageNo = ViewBag.PageNo + 1;
+                if (NextPageNo > ViewBag.NoOfPages)
+                {
+                    NextPageNo = ViewBag.NoOfPages;
+                }
+
+            }
+            <ul class="pagination justify-content-center">
+
+                <li class="page-item">
+
+                    <a class="page-link" href="@Url.Action("Index", "Products", new { Area="Manager", SortColumn = ViewBag.SortColum, IconClass = ViewBag.IconClass, PageNo = PrevPageNo })">Prev</a>
+                </li>
+                @for (int i = 0; i < ViewBag.NoOfPages; i++)
+                {
+                    if (i + 1 == ViewBag.PageNo)
+                    {
+                        <li class="page-item active">
+
+                            <a class="page-link" href="@Url.Action("Index", "Products", new { Area="Manager", SortColumn = ViewBag.SortColum, IconClass = ViewBag.IconClass, PageNo = i + 1 })">@(i + 1)</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+
+                            <a class="page-link" href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = ViewBag.SortColum, IconClass = ViewBag.IconClass, PageNo = i + 1 })">@(i + 1)</a>
+                        </li>
+
+                    }
+
+
+                }
+                <li class="page-item">
+
+                    <a class="page-link" href="@Url.Action("Index", "Products", new {Area="Manager", SortColumn = ViewBag.SortColum, IconClass = ViewBag.IconClass, PageNo = NextPageNo })">Next</a>
+                </li>
+
+            </ul>
+
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+

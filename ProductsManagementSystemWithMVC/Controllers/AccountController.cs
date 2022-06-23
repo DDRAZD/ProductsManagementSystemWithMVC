@@ -92,9 +92,13 @@ namespace ProductsManagementSystemWithMVC.Controllers
                 {
                     return RedirectToAction("Index", "Home", new { area = "Admin" });
                 }
+                else if (userManager.IsInRole(user.Id, "Manager"))
+                {
+                    return RedirectToAction("Index", "Home", new {area="Manager"});
+                }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");//not admin, nor manager, goes to root as usual
                 }
             }
             else

@@ -1,0 +1,64 @@
+﻿
+@model ProductsManagementSystemWithMVC.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Manager/Views/Shared/ManagerLayoutPage1.cshtml";
+}
+
+
+@{ 
+    //checking for nulls
+
+    string categoryName = "";
+    string brandName = "";
+    string dateOfPurchase = "";
+
+    if(Model.Category != null)
+    {
+        categoryName = Model.Category.CategoryName;
+    }
+    if(Model.Brand !=null)
+    {
+        brandName = Model.Brand.BrandName;
+    }
+    if(Model.DOP.HasValue)
+    {
+        dateOfPurchase = Model.DOP.Value.ToString("yyyy-MM-dd");
+    }
+}
+<h2>Product Details</h2>
+
+<table class="table">
+
+    <tr>
+        <th>Product ID</th>
+        <td>@Model.ProductID</td>
+    </tr>
+    <tr>
+        <th>Product Name</th>
+        <td>@Model.ProductName</td>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <td>@Model.Price</td>
+    </tr>
+    <tr>
+        <th>Avilablity</th>
+        <td>@Model.AvailabilityStatus</td>
+    </tr>
+    <tr>
+        <th>Category</th>
+        <td>@categoryName</td>
+    </tr>
+    <tr>
+        <th>Brand</th>
+        <td>@brandName</td>
+    </tr>
+    <tr>
+        <th>Date of Purchase</th>
+        <td>@dateOfPurchase</td>
+    </tr>
+</table>
+
+<a href="@Url.Action("index","Products", new {Area="Manager"})">Back to Products</a>
