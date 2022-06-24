@@ -175,6 +175,7 @@
     <Content Include="Areas\Manager\Views\Products\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\Products\Index.cshtml" />
     <Content Include="Areas\Manager\Views\Products\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -279,6 +280,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Manager\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manager\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
