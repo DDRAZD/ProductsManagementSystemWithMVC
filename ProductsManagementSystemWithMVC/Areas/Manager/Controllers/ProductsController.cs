@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProductsManagementSystemWithMVC.Models;
+using ProductsManagementSystemWithMVC.Filters;
 
 namespace ProductsManagementSystemWithMVC.Areas.Manager.Controllers
 {
+    [ManagerAuthorization]
     public class ProductsController : Controller
     {
 

@@ -17,7 +17,7 @@ namespace ProductsManagementSystemWithMVC
         {
             // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=316888
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions() { AuthenticationType=DefaultAuthenticationTypes.ApplicationCookie, LoginPath=new PathString("/Account/Login") });
+            app.UseCookieAuthentication(new CookieAuthenticationOptions() { AuthenticationType=DefaultAuthenticationTypes.ApplicationCookie, LoginPath=new PathString("/Account/Login") });//this is how MVC knows to redirect to login upon filter failing
             this.CreateRolesAndUsers();//calling it at the first time when the DB is empty (these are deafult roles and users)
         }
 

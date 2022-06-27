@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProductsManagementSystemWithMVC.Identity;
+using ProductsManagementSystemWithMVC.Filters;
 
 namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
 {
+    [AdminAuthorization]
     public class UsersController : Controller
     {
         // GET: Admin/Users

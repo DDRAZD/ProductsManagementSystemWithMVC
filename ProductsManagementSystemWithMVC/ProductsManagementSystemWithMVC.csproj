@@ -291,6 +291,9 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="CustomValidations\DivisibleBy10Attribute.cs" />
     <Compile Include="CustomValidations\UserHobbiesAttributes.cs" />
+    <Compile Include="Filters\AdminAuthorization.cs" />
+    <Compile Include="Filters\CustomerAuthorization.cs" />
+    <Compile Include="Filters\ManagerAuthorization.cs" />
     <Compile Include="Filters\MyAuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
