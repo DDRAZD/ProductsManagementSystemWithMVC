@@ -15,6 +15,9 @@ namespace ProductsManagementSystemWithMVC
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ModelBinders.Binders.Add(typeof(Student), new CustomBinder());
+
+            //calling the filter config
+            FilterConfig.RegisterGlobalFiters(GlobalFilters.Filters);//this argument we are passing here will be recevied in FilterConfig.cs
         }
     }
 }

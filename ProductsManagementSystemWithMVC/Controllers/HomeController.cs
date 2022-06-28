@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProductsManagementSystemWithMVC.Models;
+using ProductsManagementSystemWithMVC.Filters;
 
 namespace ProductsManagementSystemWithMVC.Controllers
 {
@@ -11,6 +12,8 @@ namespace ProductsManagementSystemWithMVC.Controllers
     {
         [Route("Home/Index")]
         [Route("")]
+        [MyActionFilter]
+        [MyResultFilter]
         public ActionResult Index()
         {
            

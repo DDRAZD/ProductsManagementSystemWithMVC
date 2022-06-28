@@ -14,6 +14,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
         [MyAuthenticationFilter]
         [CustomerAuthorization]
+        [MyActionFilter]        
         public ActionResult Index()
         {
             CompanyDbContext db = new CompanyDbContext();
