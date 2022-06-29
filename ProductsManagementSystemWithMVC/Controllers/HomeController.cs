@@ -14,6 +14,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
         [Route("")]
         [MyActionFilter]
         [MyResultFilter]
+        [OutputCache(Duration =60)]
         public ActionResult Index()
         {
            

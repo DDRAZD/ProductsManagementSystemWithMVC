@@ -15,7 +15,8 @@ namespace ProductsManagementSystemWithMVC.Controllers
     public class AccountController : Controller
     {
         //GET request
-        public ActionResult Register()
+        [ActionName("Register")]
+        public ActionResult RegisterationPage()
         {
             return View();
         }
@@ -40,10 +41,10 @@ namespace ProductsManagementSystemWithMVC.Controllers
                     //role
                     userManager.AddToRole(user.Id, "Customer");
 
-                    //login
-                    var authenticationManager = HttpContext.GetOwinContext().Authentication;
-                    var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    authenticationManager.SignIn(new AuthenticationProperties(), userIdentity);
+                  //  LoginUser(userManager, user);
+                    this.LoginUser(userManager,user);
+
+                   
                 }
 
                 return RedirectToAction("Register", "Account");
@@ -74,6 +75,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
 
         //Post request
         [HttpPost]
+        [OverrideExceptionFilters]
         public ActionResult Login(LoginViewModel lvm)
         {
             //login
@@ -84,9 +86,10 @@ namespace ProductsManagementSystemWithMVC.Controllers
             if (user != null)
             {
                 //login
-                var authenticationManager = HttpContext.GetOwinContext().Authentication;
+                this.LoginUser(userManager,user);
+               /* var authenticationManager = HttpContext.GetOwinContext().Authentication;
                 var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                authenticationManager.SignIn(new AuthenticationProperties(), userIdentity);
+                authenticationManager.SignIn(new AuthenticationProperties(), userIdentity);*/
 
                 if (userManager.IsInRole(user.Id, "Admin"))
                 {
@@ -107,31 +110,15 @@ namespace ProductsManagementSystemWithMVC.Controllers
                 return View();
             }
 
-            /*
-            var user = userManager.Find(lvm.Username, lvm.Password);
-            if (user != null) //successufl login
-            {
-                var authenticationManager = HttpContext.GetOwinContext().Authentication;
-                var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                authenticationManager.SignIn(new AuthenticationProperties(), userIdentity);
-               
-                if(userManager.IsInRole(user.Id,"Admin"))
-                {
-                    return RedirectToAction("Index", "Home", new { area = "Admin" });
-                }
-                else
-                { 
-                    return RedirectToAction("Index", "Home"); 
-                }
-               
-            }
-            else //matching user is not found in the database
-            {
-                ModelState.AddModelError("myerror", "Invalid username or password");//this will be sent to the view and displayed in the validation summary of the view
-                return View();
-            }*/
+           }
+        //this is a normal method that cannot be called from the client side; i.
 
-
+        [NonAction]
+        public void LoginUser(ApplicationUserManager userManager, ApplicationUser user)
+        {
+            var authenticationManager = HttpContext.GetOwinContext().Authentication;
+            var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+            authenticationManager.SignIn(new AuthenticationProperties(), userIdentity);
         }
 
         public ActionResult Logout()
