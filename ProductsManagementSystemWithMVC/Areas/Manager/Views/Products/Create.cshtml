@@ -10,6 +10,7 @@
 <h2>Create</h2>
 @using (Html.BeginForm("Create", "Products", new { area = "Manager" },FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.AntiForgeryToken()
     <!--first row-->
     <div class="form-row">
         <div class="form-group col-md-6">

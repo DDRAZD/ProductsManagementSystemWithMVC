@@ -17,7 +17,7 @@ namespace ProductsManagementSystemWithMVC.Controllers
         [OutputCache(Duration =60)]
         public ActionResult Index()
         {
-           
+           // throw new Exception("example exception to test");
             
             return View();
         }

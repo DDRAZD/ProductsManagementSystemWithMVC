@@ -13,7 +13,9 @@ namespace ProductsManagementSystemWithMVC
     {
         public static void RegisterGlobalFiters(GlobalFilterCollection filters)
         {
-            filters.Add(new MyExceptionFIlter()); //adding my exception filter from the filter folder; will be now applied automatically to all action methods 
+        //    filters.Add(new MyExceptionFIlter()); //adding my exception filter from the filter folder; will be now applied automatically to all action methods 
+
+            filters.Add(new HandleErrorAttribute() { ExceptionType=typeof(Exception), View="Error"});
         }
     }
 }

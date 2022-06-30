@@ -1,0 +1,14 @@
+﻿@model HandleErrorInfo 
+
+
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_SecondaryLayout.cshtml";
+}
+
+<h2 style="color:red">Error</h2>
+
+<h3>@Model.ActionName</h3>
+<h3>@Model.ControllerName</h3>
+<h3>@Model.Exception.Message</h3>
+<h3>@Model.Exception.GetType().ToString()</h3>
