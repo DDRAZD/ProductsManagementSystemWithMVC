@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using ProductsManagementSystemWithMVC.Models;
+using Company.DomainModels;
 using System.IO;
 
 namespace ProductsManagementSystemWithMVC
@@ -15,7 +15,7 @@ namespace ProductsManagementSystemWithMVC
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            ModelBinders.Binders.Add(typeof(Student), new CustomBinder());
+         //   ModelBinders.Binders.Add(typeof(Student), new CustomBinder());
 
             //calling the filter config
             FilterConfig.RegisterGlobalFiters(GlobalFilters.Filters);//this argument we are passing here will be recevied in FilterConfig.cs

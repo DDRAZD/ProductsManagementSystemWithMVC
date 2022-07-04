@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ProductsManagementSystemWithMVC.Models;
+using Company.DomainModels;
 
 namespace ProductsManagementSystemWithMVC.Controllers
 {
@@ -14,10 +14,10 @@ namespace ProductsManagementSystemWithMVC.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult Create([ModelBinder(typeof(CustomBinder))] Student stu)
+     //   [HttpPost]
+     /*   public ActionResult Create([ModelBinder(typeof(CustomBinder))] Student stu)
         {
             return View();
-        }
+        }*/
     }
 }

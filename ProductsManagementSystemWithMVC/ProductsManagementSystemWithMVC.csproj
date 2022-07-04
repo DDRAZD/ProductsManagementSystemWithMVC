@@ -292,8 +292,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="CustomValidations\DivisibleBy10Attribute.cs" />
-    <Compile Include="CustomValidations\UserHobbiesAttributes.cs" />
     <Compile Include="Filters\AdminAuthorization.cs" />
     <Compile Include="Filters\CustomerAuthorization.cs" />
     <Compile Include="Filters\ManagerAuthorization.cs" />
@@ -347,14 +345,6 @@
       <DependentUpon>202206221127032_RemovingNullColumns.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Brand.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\CompanyDbContext.cs" />
-    <Compile Include="Models\CustomBinder.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductExample.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -434,6 +424,16 @@
     <EmbeddedResource Include="Migrations\202206221127032_RemovingNullColumns.resx">
       <DependentUpon>202206221127032_RemovingNullColumns.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Company.DataLayer\Company.DataLayer.csproj">
+      <Project>{a08b8ad1-c463-4a65-b216-c2106843d28c}</Project>
+      <Name>Company.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Company.DomainModels\Company.DomainModels.csproj">
+      <Project>{25e01d26-2906-47f6-9e08-70dbcb32ba63}</Project>
+      <Name>Company.DomainModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

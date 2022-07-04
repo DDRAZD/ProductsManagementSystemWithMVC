@@ -1,31 +1,27 @@
-﻿namespace ProductsManagementSystemWithMVC.Migrations
+﻿
+
+namespace ProductsManagementSystemWithMVC.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ProductsManagementSystemWithMVC.Models.CompanyDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<Company.DataLayer.CompanyDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(ProductsManagementSystemWithMVC.Models.CompanyDbContext context)
+        protected override void Seed(Company.DataLayer.CompanyDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+           
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
-
-          /*  context.Brands.AddOrUpdate(new Models.Brand() { BrandID = 1, BrandName = "Samsung" });
-            context.Categories.AddOrUpdate(new Models.Category() { CategoryID = 1, CategoryName = "Appliances" });
-            context.Products.AddOrUpdate(x=> x.ProductID, new Models.Product() { ProductID = 1, ProductName ="iPhone", AvailabilityStatus="InStock", DOP=DateTime.Now, Active=true, Price=1500, BrandID=1, CategoryID=2});*/
-
-            context.Brands.AddOrUpdate(new Models.Brand() { BrandID = 1, BrandName = "Samsung" });
+         /*   context.Brands.AddOrUpdate(new Models.Brand() { BrandID = 1, BrandName = "Samsung" });
             context.Categories.AddOrUpdate(new Models.Category() { CategoryID = 1, CategoryName = "Electronics" });
-            context.Products.AddOrUpdate(new Models.Product() { ProductID = 1, ProductName = "Samsung Galaxy Mobile", CategoryID = 1, DOP = DateTime.Now, Active = true, BrandID = 1, Photo = null, Price = 10000, AvailabilityStatus = "InStock" });
+            context.Products.AddOrUpdate(new Models.Product() { ProductID = 1, ProductName = "Samsung Galaxy Mobile", CategoryID = 1, DOP = DateTime.Now, Active = true, BrandID = 1, Photo = null, Price = 10000, AvailabilityStatus = "InStock" });*/
         }
     }
 }

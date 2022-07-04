@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 using System.Data.Entity;
-using ProductsManagementSystemWithMVC.Migrations;
+//using ProductsManagementSystemWithMVC.Migrations;
+using Company.DomainModels;
 
-
-namespace ProductsManagementSystemWithMVC.Models
+namespace Company.DataLayer
 {
     public class CompanyDbContext:DbContext
     {
@@ -14,14 +15,13 @@ namespace ProductsManagementSystemWithMVC.Models
         //the naming conventions is the plural of the class -> "brand" becomes "brands"
 
         //constructor to build the data base
-        public CompanyDbContext():base("MyConnectionString")
+        public CompanyDbContext() : base("MyConnectionString")
         {
-           Database.SetInitializer(new MigrateDatabaseToLatestVersion<CompanyDbContext, Configuration>());
+         //   Database.SetInitializer(new MigrateDatabaseToLatestVersion<CompanyDbContext, Configuration>());
         }
 
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
-
     }
 }

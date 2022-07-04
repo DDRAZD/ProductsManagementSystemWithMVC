@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProductsManagementSystemWithMVC.ViewModels;
-using ProductsManagementSystemWithMVC.Models;
+using Company.DomainModels;
 using ProductsManagementSystemWithMVC.Identity;
 using Microsoft.AspNet.Identity;
 using System.Web.Helpers;

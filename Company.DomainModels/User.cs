@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using ProductsManagementSystemWithMVC.CustomValidations;
+//using ProductsManagementSystemWithMVC.CustomValidations;
 
-namespace ProductsManagementSystemWithMVC.Models
+namespace Company.DomainModels
 {
-    [UserHobbiesAttributes(ErrorMessage = "At least one hobby and maximum of four hobbies should be selected")]
+   // [UserHobbiesAttributes(ErrorMessage = "At least one hobby and maximum of four hobbies should be selected")]
     public class User
     {
         public string UserName { get; set; }
