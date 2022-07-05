@@ -6,20 +6,33 @@ using System.Web.Mvc;
 using Company.DomainModels;
 using ProductsManagementSystemWithMVC.Filters;
 using Company.DataLayer;
+using Company.ServiceContracts;
+using Company.ServiceLayer;
 
 namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
 {
     [AdminAuthorization]
     public class ProductsController : Controller
     {
+        CompanyDbContext db;//parameter for this class
+        IProductService productService;//parameter for this class
 
-        CompanyDbContext db = new CompanyDbContext();
-       // [Route("Home/Products")]
+        /// <summary>
+        /// constructor for the controller
+        /// </summary>
+
+        public ProductsController()
+        {
+            this.db = new CompanyDbContext();
+            this.productService = new ProductService();//caling the constructor fron the product service layer
+        }
+
+        
         public ActionResult Index(string search = "", string SortColumn = "ProductName", string IconClass = "fa-sort-asc", int PageNo = 1)
         {
 
             //CompanyDbContext db = new CompanyDbContext();
-            List<Product> products = db.Products.Where(item => item.ProductName.Contains(search)).ToList();
+            List<Product> products = productService.SearchProducts(search);
             ViewBag.Search = search;
             ViewBag.SortColumn = SortColumn;
             ViewBag.IconClass = IconClass;
@@ -101,9 +114,7 @@ namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
         {
 
             // CompanyDbContext db = new CompanyDbContext();
-            Product product = db.Products.Where(item => item.ProductID == id).FirstOrDefault();
-
-
+            Product product = productService.GetProductByProductID(id);
 
             return View(product);
 
@@ -138,8 +149,9 @@ namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
                     var base64String = Convert.ToBase64String(imgBytes, 0, imgBytes.Length);//convert the bytes to string before storing in DB
                     product.Photo = base64String;
                 }
-                db.Products.Add(product);
-                db.SaveChanges();
+                  productService.InsertProduct(product);
+               // db.Products.Add(product);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
             else
@@ -154,7 +166,7 @@ namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
         {
             //  CompanyDbContext db = new CompanyDbContext();
 
-            Product productToEdit = db.Products.Where(product => product.ProductID == id).FirstOrDefault();
+            Product productToEdit = productService.GetProductByProductID(id);
 
 
             ViewBag.Categories = db.Categories.ToList();
@@ -187,7 +199,8 @@ namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
                 productToEdit.Active = product.Active;
                 productToEdit.AvailabilityStatus = product.AvailabilityStatus;
 
-                db.SaveChanges();
+                productService.UpdateProduct(productToEdit);
+              //  db.SaveChanges();
             }
             
 
@@ -197,10 +210,10 @@ namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
         public ActionResult Delete(long id)
         {
             //CompanyDbContext db = new CompanyDbContext();
-            Product productTodelte = db.Products.Where(p => p.ProductID == id).FirstOrDefault();
+            productService.DeleteProduct(id);
 
-            db.Products.Remove(productTodelte);
-            db.SaveChanges();
+          //  db.Products.Remove(productTodelte);
+           // db.SaveChanges();
 
             return RedirectToAction("Index", "Products");
         }

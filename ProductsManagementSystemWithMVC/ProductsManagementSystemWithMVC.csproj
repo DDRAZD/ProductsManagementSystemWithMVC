@@ -434,6 +434,14 @@
       <Project>{25e01d26-2906-47f6-9e08-70dbcb32ba63}</Project>
       <Name>Company.DomainModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Company.ServiceContracts\Company.ServiceContracts.csproj">
+      <Project>{017946bb-5b14-4527-babf-0d9c8b42af32}</Project>
+      <Name>Company.ServiceContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Company.ServiceLayer\Company.ServiceLayer.csproj">
+      <Project>{eaa28473-556b-41ee-afcb-3c1903d1fa9f}</Project>
+      <Name>Company.ServiceLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
