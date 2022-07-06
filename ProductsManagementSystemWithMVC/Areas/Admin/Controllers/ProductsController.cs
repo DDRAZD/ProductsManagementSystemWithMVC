@@ -21,10 +21,12 @@ namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
         /// constructor for the controller
         /// </summary>
 
-        public ProductsController()
+        public ProductsController(IProductService pService)
         {
             this.db = new CompanyDbContext();
-            this.productService = new ProductService();//caling the constructor fron the product service layer
+           /* this.productService = new ProductService();//caling the constructor fron the product service layer
+            "new" is "glue" so instead of that, we will use Unity's dependancy injection */
+           this.productService = pService;//receiving as an argument - this is the dependnacy injection. This is mapped in UnityConfig. When the constructor of the controller runs, the IProductService will be swapped with an instance of proudct service as mapped in that config. this happens at RUN TIME. so you can take it fro outside instead of building it tightly bound inside
         }
 
         
