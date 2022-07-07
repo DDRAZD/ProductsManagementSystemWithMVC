@@ -3,6 +3,8 @@ using System;
 using Unity;
 using Company.ServiceContracts;
 using Company.ServiceLayer;
+using Company.RepositoryContracts;
+using Company.RepositoryLayer;
 
 namespace ProductsManagementSystemWithMVC
 {
@@ -45,6 +47,7 @@ namespace ProductsManagementSystemWithMVC
             // TODO: Register your type's mappings here.
              container.RegisterType<IProductService,ProductService >();//this will allow dependancy injection, creation of an instance in one place and injecting it in another so they are not tightly bound
             //this means that in any place there is a controller constructor that calls IProductService, an instance of ProductService will be injected (autoamtically create an instance of it) and pass it as an argumnet
+            container.RegisterType<IProductsRepository, ProductRepository>();//another mapping; telling that at run time once will be injected vs. the other
         }
     }
 }

@@ -5,68 +5,71 @@ using System.Text;
 using System.Threading.Tasks;
 using Company.ServiceContracts;
 using Company.DataLayer;
-using Company.DataLayer;
+//using Company.DataLayer; as we have the repository layer, we do not reference the data layer directly from the service layer anymore
 using Company.DomainModels;
+using Company.RepositoryContracts;
+using Company.RepositoryLayer;
+
+//business logic in the service is to check conditions and do some calculations; it is not to interact with the data base. That is done in the repositoty layer
+
 
 namespace Company.ServiceLayer
 {
     public class ProductService : IProductService
     {
-        CompanyDbContext db;
+        // CompanyDbContext db;
+        IProductsRepository prodRep;
+
 
         /// <summary>
         /// CONSTRUCTOR
         /// </summary>
-        public ProductService()
+        public ProductService(IProductsRepository r)//dependancy injection
         {
-            db = new CompanyDbContext();
+           this.prodRep=r;
         }
 
         public void DeleteProduct(long ProductID)
         {
-            Product existingProducts = db.Products.Where(item=>item.ProductID == ProductID).FirstOrDefault();
-            db.Products.Remove(existingProducts);
-            db.SaveChanges();
+           prodRep.DeleteProduct(ProductID);
         }
 
         public Product GetProductByProductID(long ProductID)
         {
-            Product p = db.Products.Where(item => item.ProductID == ProductID).FirstOrDefault(); 
+            Product p = prodRep.GetProductByProductID(ProductID);
             return p;
         }
 
         public List<Product> GetProducts()
         {
-            List<Product> products = db.Products.ToList();
+            List<Product> products = prodRep.GetProducts();
             return products;
         }
 
         public void InsertProduct(Product p)
         {
-            db.Products.Add(p);
-            db.SaveChanges();
+            if(p.Price<=100000)
+            {
+                prodRep.InsertProduct(p);
+            }   
+            else
+            {
+                throw new Exception("Price exceeds the limit");
+            }
+                   
         }
 
         public List<Product> SearchProducts(string ProductName)
         {
-           List<Product> products =db.Products.Where(p => p.ProductName.Contains(ProductName)).ToList();
+           List<Product> products =prodRep.SearchProducts(ProductName);
             return products;
         }
 
         public void UpdateProduct(Product p)
         {
-            Product productToEdit = db.Products.Where(item=>item.ProductID==p.ProductID).FirstOrDefault();
-            //update the product but dont touch the id as that is a primary key
-            productToEdit.ProductName = p.ProductName;
-            productToEdit.Price = p.Price;
-            productToEdit.DOP = p.DOP;
-            productToEdit.CategoryID = p.CategoryID;
-            productToEdit.BrandID = p.BrandID;
-            productToEdit.Active = p.Active;
-            productToEdit.AvailabilityStatus = p.AvailabilityStatus;
-            productToEdit.Photo = p.Photo;
-
-            db.SaveChanges();
+           prodRep.UpdateProduct(p);
+            
+          
         }
     }
 }
