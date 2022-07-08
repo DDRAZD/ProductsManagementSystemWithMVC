@@ -126,7 +126,8 @@ namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
         public ActionResult Create()
         {
             // CompanyDbContext db = new CompanyDbContext();
-            ViewBag.Categories = db.Categories.ToList();
+            //the "Categories" key in the viewdata can be anything; as long as at the view this is how you reference it
+            ViewData["Categories"] = db.Categories.ToList();
             ViewBag.Brands = db.Brands.ToList();
 
             return View();

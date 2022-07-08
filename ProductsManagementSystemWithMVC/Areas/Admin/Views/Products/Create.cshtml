@@ -51,7 +51,9 @@
 
         <div class="form-group col-md-6">
             @Html.LabelFor(item => item.CategoryID)
-            @Html.DropDownListFor(item => item.CategoryID, new SelectList(ViewBag.Categories, "CategoryID", "CategoryName"), "Please Select", new { @class = "form-control" })
+            @Html.DropDownListFor(item => item.CategoryID, new SelectList(
+           (List<Company.DomainModels.Category>)ViewData["Categories"],
+           "CategoryID", "CategoryName"), "Please Select", new { @class = "form-control" })
             @Html.ValidationMessageFor(temp => temp.CategoryID)
 
         </div>
