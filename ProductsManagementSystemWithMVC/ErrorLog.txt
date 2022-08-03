@@ -2,3 +2,4 @@ Message: A network-related or instance-specific error occurred while establishin
 Message: Execution of the child request failed. Please examine the InnerException for more information. , TypeSystem.Web.HttpException , Source: System.Web.Mvc
 Message: The underlying provider failed on Open., Type: System.Data.Entity.Core.EntityException, Source: EntityFramework
 Message: The controller for path '/Admin/Shared/AdminLayoutPage1' was not found or does not implement IController., Type: System.Web.HttpException, Source: System.Web.Mvc
+Message: The controller for path '/api/brands' was not found or does not implement IController., Type: System.Web.HttpException, Source: System.Web.Mvc

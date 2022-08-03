@@ -1,0 +1,44 @@
+working with WebAPI
+
+Creating new project of WebAPI (lets call it WebAPI test)-> select it empty and checking the box for WebAPI 
+
+from its WebConfig file, pick up the <system.webServer> portion that is necessary for WebAPI and use in the the main project (copy it)
+
+<system.webServer>
+    <handlers>
+      <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+      <remove name="OPTIONSVerbHandler" />
+      <remove name="TRACEVerbHandler" />
+      <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+    </handlers>
+  </system.webServer>
+
+paste it in the main project after the system.web section ( in the main project web config)
+
+also, in main project:
+
+install-package Microsoft.AspNet.WebApi
+
+from the testAPI project copy from the Global.asax file the statement:
+ GlobalConfiguration.Configure(WebApiConfig.Register);
+ into the GLobal.asax in the main project (this is all in the Application_Start() method)
+ importat in that file: using System.Web.Http
+
+ IT IS IMPORTANT THAT THE GLOBALCONFIGURATION WILL BE BEFORE TEH ROUTECONFIG so postman will work properly when calling the API later:
+ this is the correct order:
+  GlobalConfiguration.Configure(WebApiConfig.Register);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+
+ from webapiTest project, copy the register method (its at teh App_start, in the webapiconfig.cs) and paste it into a new file called WebAPiCofig.cs that will be placed in the App_start
+ remove the "App_start" from namespace (i.e. make sure the namespace is just like the main project)
+
+ this was how to enable webapi in our project - now we do not need the webapitest project and it can be closed
+
+ creating web API controler:
+ - add folder of ApiContollers in the main project
+ - add WebAPI 2 controller - empty in that folder (i added "brands" controller)
+
+ api contollers do not return html (i.e. not views) but string objects (such as xml or json -> hence Ajax)
+
+ after adding the "Get" method in the controller - we can test using postman if it is working

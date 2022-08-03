@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6C6394BE-CB9D-4F9B-9D2A-01DD2D84BC98}"
 	ProjectSection(SolutionItems) = preProject
 		ProductsManagementSystemWithMVC\EFDbFirstDatabase.sql = ProductsManagementSystemWithMVC\EFDbFirstDatabase.sql
+		Notes.txt = Notes.txt
 		ProductsManagementSystemWithMVC\PaySlip1.pdf = ProductsManagementSystemWithMVC\PaySlip1.pdf
 		ProductsManagementSystemWithMVC\PaySlip2.pdf = ProductsManagementSystemWithMVC\PaySlip2.pdf
 		ProductsManagementSystemWithMVC\PaySlip3.pdf = ProductsManagementSystemWithMVC\PaySlip3.pdf
