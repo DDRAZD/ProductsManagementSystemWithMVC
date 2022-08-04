@@ -42,3 +42,24 @@ from the testAPI project copy from the Global.asax file the statement:
  api contollers do not return html (i.e. not views) but string objects (such as xml or json -> hence Ajax)
 
  after adding the "Get" method in the controller - we can test using postman if it is working
+ --------------------------------------------------
+
+ to call the API using Ajax, we put jQuery in the view 
+
+ the WebAPIconfig.cs gave routing already when we write the URL of api/controllel - the Web API is the client calling the webAPI
+ -> Ajax is client side interacting without the need to go back to the server's controller (it goes to the API)
+
+ ------------------------------------
+ in the web api controller, the "Get" of the method name is critical - that is what it is looking for when getting a "Get" request. 
+ this means you have to start the name of the method with "Get" and you can do any other name after that - just like 
+ was in ending a controller name
+ -----------------------
+ in Postman, to send the id (parameter) for method overloading identificatiion use "key" and "value" that are under the request interface
+
+ --------------------
+
+ insterting a Modal (pop up window) from Bootstrap - https://getbootstrap.com/docs/5.2/components/modal/ took base example from there
+
+ --------------------------------
+
+

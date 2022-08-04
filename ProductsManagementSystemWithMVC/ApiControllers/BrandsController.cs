@@ -11,12 +11,20 @@ namespace ProductsManagementSystemWithMVC.ApiControllers
 {
     public class BrandsController : ApiController
     {
-        public List<Brand> Get()
+        public List<Brand> GetBrands()
         {
             CompanyDbContext db = new CompanyDbContext();
             List<Brand> brands = new List<Brand>();
             brands = db.Brands.ToList();
             return brands;
+        }
+
+        public Brand GetBrandsByID(long BrandID)
+        {
+            CompanyDbContext db = new CompanyDbContext();
+            Brand brand = db.Brands.FirstOrDefault(b => b.BrandID == BrandID);
+            
+            return brand;
         }
     }
 }

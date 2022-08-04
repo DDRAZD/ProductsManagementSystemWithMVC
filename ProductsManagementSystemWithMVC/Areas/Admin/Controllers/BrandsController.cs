@@ -15,9 +15,9 @@ namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
         // GET: Admin/Brands
         public ActionResult Index()
         {
-            CompanyDbContext db = new CompanyDbContext();
-            List<Brand> brands = db.Brands.ToList();
-            return View(brands);
+         //   CompanyDbContext db = new CompanyDbContext();
+           // List<Brand> brands = db.Brands.ToList();
+            return View();
         }
     }
 }
