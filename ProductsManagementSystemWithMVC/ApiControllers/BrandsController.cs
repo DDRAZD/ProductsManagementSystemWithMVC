@@ -26,5 +26,13 @@ namespace ProductsManagementSystemWithMVC.ApiControllers
             
             return brand;
         }
+
+        public void PostBrand(Brand newBrand)
+        {
+            CompanyDbContext db = new CompanyDbContext();
+            Brand brandToInsert = new Brand();
+            db.Brands.Add(newBrand);
+            db.SaveChanges();
+        }
     }
 }

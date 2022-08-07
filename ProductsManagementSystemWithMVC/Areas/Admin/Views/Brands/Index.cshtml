@@ -44,13 +44,35 @@
     </div>
 </div>
 
+<div class="card">
+    <div class="card-header">
+        New Brand
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="form-group">
+                <label for="BrandID">BrandID </label>
+                <input type="text" class-"from-control" placeholder="BrandID" id="txtNewBrandID"/>
+            </div>
+            <div class="form-group">
+                <label for="BrandName">Brand Name </label>
+                <input type="text" class-"from-control" placeholder="BrandName" id="txtNewBrandName" />
+            </div>
+        </form>
+    </div>
+    <div class-"card-footer">
+        <button tpe="button" id="btnInsert" class="btn btn-success">Save</button>
+        <button tpe="button" id="cancel" class="btn btn-danger">Cancel</button>
+    </div>
+</div>
+
 <script>
     $("#btnGetBrands").click(() => {
         $.ajax({
             type: "GET", url: "/api/Brands", success: (response) => {
                 for (var i = 0; i < response.length; i++) {
                     var br = response[i];
-                    var str = "<tr><td>" + (i + 1) + "</td> <td>" + br.BrandName + "</td><td><button type='button' class='btn btn-danger ViewBrandButton' data-brandid='" + br.BrandID + "' data-toggle='modal' data-target='#ViewBrandModel'>View</button></td></tr>";
+                    var str = "<tr><td>" + br.BrandID + "</td> <td>" + br.BrandName + "</td><td><button type='button' class='btn btn-danger ViewBrandButton' data-brandid='" + br.BrandID + "' data-toggle='modal' data-target='#ViewBrandModel'>View</button></td></tr>";
                     $(".brandsTable").append(str);
                 }
             }, error: (err) => {
@@ -72,6 +94,23 @@
             }
         });
     });
+
+    $("#btnInsert").click(() => {
+        var brandID = $("#txtNewBrandID").val();
+        var brandName = $("#txtNewBrandName").val();
+        $.ajax({
+            type: "POST", url: "/api/Brands", data: { "brandid": brandID, "brandname": brandName }, success: (response) => {
+                var recCount = $(".brandsTable tr").length;
+                var str = "<tr><td>" + brandID + "</td> <td>" + brandName + "</td><td><button type='button' class='btn btn-info ViewBrandButton' data-brandid='" + brandID + "' data-toggle='modal' data-target='#ViewBrandModel'>View</button></td></tr>";
+                $(".brandsTable").append(str);
+            }, error: (err) => {
+                alert(err);
+                console.log(err);
+            }
+        });
+    });
+   
+
 </script>
 
 

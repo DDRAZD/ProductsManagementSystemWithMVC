@@ -62,4 +62,19 @@ from the testAPI project copy from the Global.asax file the statement:
 
  --------------------------------
 
+ for post method, name has to start with a  post-> you can also receive complext structures as ASP.Net supports automatic binding and model binding
+
+ ----------------------------
+
+ to use postman to send post requests -> ou cannot use the params as you are moving more complex structures (json or xml)
+ use postmans: 
+ Body
+ x-www-form-urlencoded
+ there you list the key value pairs that constitute your class
+
+ ----------------------
+ sending post request using jQuery/Ajax
+
+
+
 
