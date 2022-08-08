@@ -34,5 +34,13 @@ namespace ProductsManagementSystemWithMVC.ApiControllers
             db.Brands.Add(newBrand);
             db.SaveChanges();
         }
+
+        public void PutBrand(Brand brand)
+        {
+            CompanyDbContext db = new CompanyDbContext();
+          Brand brandToEdit =   db.Brands.Where(y=>y.BrandID==brand.BrandID).FirstOrDefault();
+            brandToEdit.BrandName = brand.BrandName;
+            db.SaveChanges();
+        }
     }
 }
