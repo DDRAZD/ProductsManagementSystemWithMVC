@@ -42,5 +42,13 @@ namespace ProductsManagementSystemWithMVC.ApiControllers
             brandToEdit.BrandName = brand.BrandName;
             db.SaveChanges();
         }
+
+        public void DeleteBrand(long BrandID)
+        {
+            CompanyDbContext db = new CompanyDbContext();
+            Brand brandToDelete = db.Brands.Where(y=>y.BrandID==BrandID).FirstOrDefault();
+            db.Brands.Remove(brandToDelete);
+            db.SaveChanges();
+        }
     }
 }

@@ -43,6 +43,35 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="DeleteBrandModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Delete Brand</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5> are you sure you want to delete?</h5>
+                <table class="table">
+                    <tr>
+                        <td>Brand ID</td>
+                        <td><span id="BrandIDSpan2"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Brand Name</td>
+                        <td><span id="BrandNameSpan2"></span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnDelete">Delete</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="card">
     <div class="card-header">
@@ -94,7 +123,7 @@
             type: "GET", url: "/api/Brands", success: (response) => {
                 for (var i = 0; i < response.length; i++) {
                     var br = response[i];
-                    var str = "<tr><td>" + br.BrandID + "</td> <td>" + br.BrandName + "</td><td><button type='button' class='btn btn-info ViewBrandButton' data-brandid='" + br.BrandID + "' data-toggle='modal' data-target='#ViewBrandModel'>View</button> <button type='button' class='btn btn-info EditBrandButton' data-brandid='" + br.BrandID + "'>Edit</button> </td></tr>";
+                    var str = "<tr><td>" + br.BrandID + "</td> <td>" + br.BrandName + "</td><td><button type='button' class='btn btn-info ViewBrandButton' data-brandid='" + br.BrandID + "' data-toggle='modal' data-target='#ViewBrandModel'>View</button> <button type='button' class='btn btn-info EditBrandButton' data-brandid='" + br.BrandID + "'>Edit</button> <button type='button' class='btn btn-info DeleteBrandButton' data-brandid='" + br.BrandID + "' data-toggle='modal' data-target='#DeleteBrandModel'>Delete</button</td></tr>";
                     $(".brandsTable").append(str);
                 }
             }, error: (err) => {
@@ -110,6 +139,36 @@
             type: "GET", url: "/api/Brands?brandid=" + bid, success: (response) => {
                 $("#BrandIDSpan").html(response.BrandID);
                 $("#BrandNameSpan").html(response.BrandName);
+            }, error: (err) => {
+                alert(err);
+                console.log(err);
+            }
+        });
+    });
+
+    var CurrentBrandIDToDelete;
+    var CurrentRowToDelete;
+
+    $(document).on("click", ".DeleteBrandButton", (event) => {
+        var bid = $(event.target).attr("data-brandid");
+        CurrentRowToDelete = $(event.target).parent().parent();
+        $.ajax({
+            type: "GET", url: "/api/Brands?brandid=" + bid, success: (response) => {
+                $("#BrandIDSpan2").html(response.BrandID);
+                $("#BrandNameSpan2").html(response.BrandName);
+                CurrentBrandIDToDelete = response.BrandID;
+            }, error: (err) => {
+                alert(err);
+                console.log(err);
+            }
+        });
+    });
+
+    $("#btnDelete").click(() => {
+       
+        $.ajax({
+            type: "DELETE", url: "/api/Brands?BrandID=" + CurrentBrandIDToDelete, success: (response) => {
+                CurrentRowToDelete.remove();
             }, error: (err) => {
                 alert(err);
                 console.log(err);
