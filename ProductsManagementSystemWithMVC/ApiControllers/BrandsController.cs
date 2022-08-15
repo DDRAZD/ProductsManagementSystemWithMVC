@@ -9,6 +9,7 @@ using Company.DataLayer;
 
 namespace ProductsManagementSystemWithMVC.ApiControllers
 {
+    [Authorize(Roles = "Admin")]
     public class BrandsController : ApiController
     {
         public List<Brand> GetBrands()
@@ -27,6 +28,7 @@ namespace ProductsManagementSystemWithMVC.ApiControllers
             return brand;
         }
 
+        
         public void PostBrand(Brand newBrand)
         {
             CompanyDbContext db = new CompanyDbContext();

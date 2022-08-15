@@ -9,7 +9,7 @@ using Company.DataLayer;
 
 namespace ProductsManagementSystemWithMVC.Areas.Admin.Controllers
 {
-    [AdminAuthorization]
+  //  [AdminAuthorization]
     public class BrandsController : Controller
     {
         // GET: Admin/Brands
