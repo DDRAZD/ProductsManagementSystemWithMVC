@@ -75,6 +75,30 @@ from the testAPI project copy from the Global.asax file the statement:
  ----------------------
  sending post request using jQuery/Ajax
 
+ ----------------------------
+ to allow CORS - cross origin request that is normally blocked by any browser, we need to install in the MVC project:
+
+ install-package Microsoft.AspNet.Cors
+
+ and 
+
+ install-package Microsoft.AspNet.WebApi.Cors
+
+ Then, go to WebApiCongig.cs and add:
+
+ config.EnableCors();
+
+ you go to the controller of the API and give permissions over the class (add "using Systen.Web.Http.Cors"):
+ [EnableCors(origins:"the url/domain you want to allow to do CORS", headers:"*", methods:"Get")]->
+ you can do "*" in methods to accept all or you can write "Delete", "Put" or "Post"
+
+ --------------------
+ Also, to make sure you get JSON response from a WebAPI controller - add in the WebAPiConfig.cs:
+
+ config.Formatters.Remove(config.Formatters.XmlFormatter);  this will remove XML formatter just in case. This is important as you need JSON to read properly with jQuqry when you run the AJAX in browser
+
+
+
 
 
 
